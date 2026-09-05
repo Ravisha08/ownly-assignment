@@ -1,0 +1,2308 @@
+{
+  "serviceability": {
+    "status": 200,
+    "data": {
+      "isServiceable": true,
+      "reason": "SERVICEABLE",
+      "message": "Service is available"
+    }
+  },
+  "not_serviceable": {
+    "status": 200,
+    "data": {
+      "isServiceable": false,
+      "reason": "NOTSERVICEABLE",
+      "message": "Service is not available"
+    }
+  },
+  "feed_config": {
+    "status": 200,
+    "data": {
+      "mealForOne": {
+        "id": "69f050ad5a0f80cb86270edd",
+        "name": "Bel&Sarj_Dinner_Exp",
+        "section": "FOOD_ITEM",
+        "curatedListDetailsList": [
+          {
+            "id": "69f050d15a0f80cb86270edf",
+            "name": "Bestsellers under 149",
+            "imageUrl": "https://storage.googleapis.com/pd-onl-app-assets/best_sellers_under_149.png",
+            "backGroundColour": "linear-gradient(137deg, #FCFCFC -17.38%, #F7ECDF 97.7%)",
+            "section": "FOOD_ITEM",
+            "rank": 1,
+            "deepLinkUrl": "",
+            "coverImageUrl": "",
+            "subText": "",
+            "curatedListType": "TOPDEALS",
+            "foodType": ""
+          }
+        ]
+      },
+      "restaurant": {
+        "id": "69f050325a0f80cb86270edc",
+        "name": "Exp_Bel&Sar_SNACKS_20/04",
+        "section": "RESTAURANT",
+        "topBanner": {
+          "banners": [
+            {
+              "id": "69ed6e4fb6c4df4d0c28c884",
+              "name": "Great Food, Better Prices",
+              "curatedListId": "69ca7c778acad0b44091c0cf",
+              "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/curated-list/curated-list-grouptop_banner.png",
+              "backGroundColour": "",
+              "gifUrl": "",
+              "feedConfigId": "",
+              "deepLinkUrl": ""
+            }
+          ],
+          "rank": 0,
+          "section": "RESTAURANT"
+        },
+        "curatedListGroups": [
+          {
+            "id": "000000000000000000000000",
+            "name": "What's on your mind?",
+            "imageUrl": "",
+            "backGroundColour": null,
+            "curatedListIds": [
+              "687a2610a05189d0e37e7ab4",
+              "687a26e5a05189d0e37e7ab7",
+              "687a2779a05189d0e37e7ab8",
+              "687a27e5a05189d0e37e7aba",
+              "687a2845a05189d0e37e7abc",
+              "687a28c3a05189d0e37e7abd",
+              "687a2948a05189d0e37e7abe",
+              "687a29a5a05189d0e37e7abf",
+              "687a29cca05189d0e37e7ac0",
+              "689b8c514b5ecde5e3dd0d93",
+              "68cbaab84e1601b7f79f18b2",
+              "68ef4d0b9314bf7e34fcbfb3",
+              "69008dc41ef8004ee099600c",
+              "690b2d68ebebd5850cddceaf",
+              "690b395aebebd5850cddceb2",
+              "698b22025cc399dd2d3aa3be",
+              "698b25915cc399dd2d3aa3c2",
+              "698b26335cc399dd2d3aa3c4",
+              "698b2cbe5cc399dd2d3aa3c6",
+              "698b2d6c5cc399dd2d3aa3c8"
+            ],
+            "rank": 2,
+            "section": "RESTAURANT",
+            "length": 0,
+            "width": 0
+          }
+        ],
+        "curatedListDetailsList": [
+          {
+            "id": "699c21c8a934e7899c2d245a",
+            "name": "Known & Loved",
+            "imageUrl": "",
+            "backGroundColour": "",
+            "section": "RESTAURANT",
+            "rank": 3,
+            "deepLinkUrl": "",
+            "coverImageUrl": "",
+            "subText": "",
+            "curatedListType": "",
+            "foodType": ""
+          },
+          {
+            "id": "69ca7d7d8acad0b44091c0d0",
+            "name": "Great Food, Better Prices",
+            "imageUrl": "",
+            "backGroundColour": "",
+            "section": "",
+            "rank": 2,
+            "deepLinkUrl": "",
+            "coverImageUrl": "",
+            "subText": "",
+            "curatedListType": "",
+            "foodType": ""
+          }
+        ],
+        "reOrderConfig": {
+          "name": "",
+          "rank": 1,
+          "imageUrl": "",
+          "backGroundColour": ""
+        }
+      },
+      "timeRange": {
+        "from": 1080,
+        "to": 1140
+      }
+    }
+  },
+  "curated_feed_Food_item": {
+    "status": 200,
+    "data": {
+      "SearchId": "",
+      "TotalCount": 50,
+      "EntityResults": null,
+      "FoodItems": [
+        {
+          "foodItemId": "RN414125PP139120865",
+          "resId": "RN414125",
+          "resName": "Sri Lakshmi Biryani",
+          "name": "BABY Special Boneless Chicken Biryani(Small.)",
+          "cleanedName": "baby special boneless chicken biryani",
+          "description": "Biryani with a small quantity 400grams.",
+          "price": 98,
+          "displayPrice": 98,
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/menu-images/0hod98xv22_item_RN414125PP139120865_20260616234127.jpeg",
+          "vegOrNonVeg": "non-veg",
+          "tags": null,
+          "customTags": [],
+          "location": {
+            "lat": 12.95027791,
+            "lon": 77.70913696
+          },
+          "address": {
+            "city": "Bangalore",
+            "area": "Marathahalli"
+          },
+          "resNumberOfRatings": 1312,
+          "ratingScore": 0,
+          "priceScore": 0,
+          "orderingEnabled": false,
+          "hasVariants": false,
+          "distanceInKm": 2.75,
+          "feedTags": null,
+          "etaInMinutes": 37,
+          "itemPriceParityDetails": {
+            "priceDifferencePercentage": 0,
+            "invertedPriceDifferencePercentage": 0
+          },
+          "ResRatingResponse": {
+            "type": "platform",
+            "value": 3.3613325158389555,
+            "count": 4843
+          },
+          "resImageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/RN414125.png"
+        },
+        {
+          "foodItemId": "RN128656UP113117543",
+          "resId": "RN128656",
+          "resName": "Burger It Up",
+          "name": "Chicken Snacker Burger",
+          "cleanedName": "chicken snacker burger",
+          "description": "New! a scrumptious Mini Fried Chicken Patty topped with lettuce, Creamy sauce and secret sauce!",
+          "price": 56,
+          "displayPrice": 56,
+          "markUpDisplayPrice": 149,
+          "displayMarkupPrice": 149,
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/menu-images/17614_item_RN128656UP113117543_20260613210705.jpg",
+          "vegOrNonVeg": "non-veg",
+          "tags": null,
+          "customTags": [],
+          "location": {
+            "lat": 12.90753,
+            "lon": 77.68334
+          },
+          "address": {
+            "city": "Bangalore",
+            "area": "Sarjapur Road"
+          },
+          "resNumberOfRatings": 3399,
+          "ratingScore": 0,
+          "priceScore": 0,
+          "orderingEnabled": false,
+          "hasVariants": true,
+          "distanceInKm": 6.13,
+          "feedTags": null,
+          "etaInMinutes": 49,
+          "displayTags": [
+            "Bestseller"
+          ],
+          "itemPriceParityDetails": {
+            "priceDifferencePercentage": 0,
+            "invertedPriceDifferencePercentage": 0
+          },
+          "ResRatingResponse": null,
+          "resImageUrl": ""
+        },
+        {
+          "foodItemId": "RN428221_1781279303_ekaps9oy",
+          "resId": "RN428221",
+          "resName": "Hyderabad Firewood Biryani",
+          "name": "Baby Chicken Boneless Biryani ",
+          "cleanedName": "baby chicken boneless biryani",
+          "description": "",
+          "price": 95,
+          "displayPrice": 95,
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/menu-images/RN428221_item_RN428221_1781279303_ekaps9oy_20260618133456.png",
+          "vegOrNonVeg": "non-veg",
+          "tags": null,
+          "customTags": [],
+          "location": {
+            "lat": 12.950361997007036,
+            "lon": 77.70197376608849
+          },
+          "address": {
+            "city": "Bangalore",
+            "area": "Kaadubeesanahalli"
+          },
+          "resNumberOfRatings": 0,
+          "ratingScore": 0,
+          "priceScore": 0,
+          "orderingEnabled": false,
+          "hasVariants": false,
+          "distanceInKm": 1.73,
+          "feedTags": null,
+          "etaInMinutes": 32,
+          "itemPriceParityDetails": {
+            "priceDifferencePercentage": 0,
+            "invertedPriceDifferencePercentage": 0
+          },
+          "ResRatingResponse": {
+            "type": "platform",
+            "value": 3.45748148148148,
+            "count": 3325
+          },
+          "resImageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/f06114226150da275d6b1b51ca86aa61.png"
+        },
+        {
+          "foodItemId": "RN428221_1778682216_sn7zaqvf",
+          "resId": "RN428221",
+          "resName": "Hyderabad Firewood Biryani",
+          "name": "Fry Piece Biryani ",
+          "cleanedName": "fry piece biryani",
+          "description": "",
+          "price": 129,
+          "displayPrice": 129,
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/menu-images/RN428221_item_RN428221_1778682216_sn7zaqvf_20260618133456.png",
+          "vegOrNonVeg": "non-veg",
+          "tags": null,
+          "customTags": [],
+          "location": {
+            "lat": 12.950361997007036,
+            "lon": 77.70197376608849
+          },
+          "address": {
+            "city": "Bangalore",
+            "area": "Kaadubeesanahalli"
+          },
+          "resNumberOfRatings": 0,
+          "ratingScore": 0,
+          "priceScore": 0,
+          "orderingEnabled": false,
+          "hasVariants": true,
+          "distanceInKm": 1.73,
+          "feedTags": null,
+          "etaInMinutes": 32,
+          "itemPriceParityDetails": {
+            "priceDifferencePercentage": 0,
+            "invertedPriceDifferencePercentage": 0
+          },
+          "ResRatingResponse": {
+            "type": "platform",
+            "value": 3.45748148148148,
+            "count": 3325
+          },
+          "resImageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/f06114226150da275d6b1b51ca86aa61.png"
+        },
+        {
+          "foodItemId": "RN128656UP113117459",
+          "resId": "RN128656",
+          "resName": "Burger It Up",
+          "name": "Fiery Chicken Burger",
+          "cleanedName": "fiery chicken burger",
+          "description": "It's Hot to handle with each bite firing spicy heat and juicy Fried chicken fillet with fresh Lettuce in Soft Seeded bun. It's hot and happening.",
+          "price": 102,
+          "displayPrice": 102,
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/menu-images/17614_item_RN128656UP113117459_20260613210704.jpg",
+          "vegOrNonVeg": "non-veg",
+          "tags": null,
+          "customTags": [],
+          "location": {
+            "lat": 12.90753,
+            "lon": 77.68334
+          },
+          "address": {
+            "city": "Bangalore",
+            "area": "Sarjapur Road"
+          },
+          "resNumberOfRatings": 3399,
+          "ratingScore": 0,
+          "priceScore": 0,
+          "orderingEnabled": false,
+          "hasVariants": true,
+          "distanceInKm": 6.13,
+          "feedTags": null,
+          "etaInMinutes": 49,
+          "displayTags": [
+            "Bestseller"
+          ],
+          "itemPriceParityDetails": {
+            "priceDifferencePercentage": 0,
+            "invertedPriceDifferencePercentage": 0
+          },
+          "ResRatingResponse": null,
+          "resImageUrl": ""
+        },
+        {
+          "foodItemId": "RN427313_46912",
+          "resId": "RN427313",
+          "resName": "Hyderabadi bawarchi",
+          "name": "Chicken Dum Biryani",
+          "cleanedName": "chicken dum biryani",
+          "description": "Two Peices",
+          "price": 119,
+          "displayPrice": 119,
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/menu-images/RN427313_item_RN427313_46912_20260618134450.png",
+          "vegOrNonVeg": "non-veg",
+          "tags": null,
+          "customTags": [],
+          "location": {
+            "lat": 12.950398294356816,
+            "lon": 77.70184998407503
+          },
+          "address": {
+            "city": "Bangalore",
+            "area": "Munekollala,\nMahadevapura"
+          },
+          "resNumberOfRatings": 0,
+          "ratingScore": 0,
+          "priceScore": 0,
+          "orderingEnabled": false,
+          "hasVariants": true,
+          "distanceInKm": 1.72,
+          "feedTags": null,
+          "etaInMinutes": 32,
+          "itemPriceParityDetails": {
+            "priceDifferencePercentage": 0,
+            "invertedPriceDifferencePercentage": 0
+          },
+          "ResRatingResponse": null,
+          "resImageUrl": ""
+        },
+        {
+          "foodItemId": "RN128435UP131561142",
+          "resId": "RN128435",
+          "resName": "Indiana Burgers",
+          "name": "Veggie Fusion Burger Jr",
+          "cleanedName": "veggie fusion burger jr",
+          "description": "You could eat several of these in one sitting! Smoky chipotle mayo smothered onto a perfeclty on Our Fusion patty along onion & Fresh Lettuce! What's not to love about it!",
+          "price": 56,
+          "displayPrice": 56,
+          "markUpDisplayPrice": 129,
+          "displayMarkupPrice": 129,
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/menu-images/11813_item_RN128435UP131561142_20260613210018.jpg",
+          "vegOrNonVeg": "veg",
+          "tags": null,
+          "customTags": [],
+          "location": {
+            "lat": 12.963415090740616,
+            "lon": 77.70919965098179
+          },
+          "address": {
+            "city": "Bangalore",
+            "area": "Brookfield"
+          },
+          "resNumberOfRatings": 23,
+          "ratingScore": 0,
+          "priceScore": 0,
+          "orderingEnabled": false,
+          "hasVariants": true,
+          "distanceInKm": 4.63,
+          "feedTags": null,
+          "etaInMinutes": 41,
+          "displayTags": [
+            "Bestseller"
+          ],
+          "itemPriceParityDetails": {
+            "priceDifferencePercentage": 0,
+            "invertedPriceDifferencePercentage": 0
+          },
+          "ResRatingResponse": null,
+          "resImageUrl": ""
+        },
+        {
+          "foodItemId": "RN132834UP130218988",
+          "resId": "RN132834",
+          "resName": "South Express",
+          "name": "Carrot Capsicum Rice Bowl + Mini Curd Rice + Chips + Raita",
+          "cleanedName": "carrot capsicum rice bowl mini curd chips raita",
+          "description": "Serves 1: Colourful and healthy carrot-capsicum rice bowl tossed in light masala, served with mini curd rice bowl, raita & chips. Wholesome South Indian meal box full of flavour and crunch.",
+          "price": 129,
+          "displayPrice": 129,
+          "markUpDisplayPrice": 229,
+          "displayMarkupPrice": 229,
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/menu-images/173125_item_RN132834UP130218988_20260317151142.jpg",
+          "vegOrNonVeg": "veg",
+          "tags": null,
+          "customTags": [],
+          "location": {
+            "lat": 12.937207,
+            "lon": 77.702434
+          },
+          "address": {
+            "city": "Bangalore",
+            "area": "Panathur"
+          },
+          "resNumberOfRatings": 0,
+          "ratingScore": 0,
+          "priceScore": 0,
+          "orderingEnabled": false,
+          "hasVariants": true,
+          "distanceInKm": 0.96,
+          "feedTags": null,
+          "etaInMinutes": 29,
+          "displayTags": [
+            "Bestseller"
+          ],
+          "itemPriceParityDetails": {
+            "priceDifferencePercentage": 0,
+            "invertedPriceDifferencePercentage": 0
+          },
+          "ResRatingResponse": {
+            "type": "platform",
+            "value": 3.6543985637342913,
+            "count": 1064
+          },
+          "resImageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/1768220311cf77ae64-5ca1-4768-87fc-8225cd52c847.png"
+        },
+        {
+          "foodItemId": "RN128441UP131645386",
+          "resId": "RN128441",
+          "resName": "Burger It Up",
+          "name": "Crispy Veg Burger Meal",
+          "cleanedName": "crispy veg burger meal",
+          "description": "Crispy Veg Burger + Fries + choice of coke 300Ml at a Deal Price",
+          "price": 99,
+          "displayPrice": 99,
+          "markUpDisplayPrice": 255,
+          "displayMarkupPrice": 255,
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/menu-images/31527_item_RN128441UP131645386_20260613205847.jpg",
+          "vegOrNonVeg": "veg",
+          "tags": null,
+          "customTags": [],
+          "location": {
+            "lat": 12.963415090740616,
+            "lon": 77.70919965098179
+          },
+          "address": {
+            "city": "Bangalore",
+            "area": "Brookfield"
+          },
+          "resNumberOfRatings": 2469,
+          "ratingScore": 0,
+          "priceScore": 0,
+          "orderingEnabled": false,
+          "hasVariants": true,
+          "distanceInKm": 4.63,
+          "feedTags": null,
+          "etaInMinutes": 41,
+          "displayTags": [
+            "Bestseller"
+          ],
+          "itemPriceParityDetails": {
+            "priceDifferencePercentage": 0,
+            "invertedPriceDifferencePercentage": 0
+          },
+          "ResRatingResponse": null,
+          "resImageUrl": ""
+        },
+        {
+          "foodItemId": "RN132834UP130218971",
+          "resId": "RN132834",
+          "resName": "South Express",
+          "name": "Tomato Bath Rice Bowl (Chettinad Thakkali Sadam) (550ml)",
+          "cleanedName": "tomato bath rice bowl",
+          "description": "Spicy Chettinad tomato rice bowl with byadagi chilli & fresh coriander. Authentic South Indian flavours in every bite served with raita and crispy chips.",
+          "price": 99,
+          "displayPrice": 99,
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/menu-images/173125_item_RN132834UP130218971_20260317151140.jpg",
+          "vegOrNonVeg": "veg",
+          "tags": null,
+          "customTags": [],
+          "location": {
+            "lat": 12.937207,
+            "lon": 77.702434
+          },
+          "address": {
+            "city": "Bangalore",
+            "area": "Panathur"
+          },
+          "resNumberOfRatings": 0,
+          "ratingScore": 0,
+          "priceScore": 0,
+          "orderingEnabled": false,
+          "hasVariants": true,
+          "distanceInKm": 0.96,
+          "feedTags": null,
+          "etaInMinutes": 29,
+          "itemPriceParityDetails": {
+            "priceDifferencePercentage": 0,
+            "invertedPriceDifferencePercentage": 0
+          },
+          "ResRatingResponse": {
+            "type": "platform",
+            "value": 3.6543985637342913,
+            "count": 1064
+          },
+          "resImageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/1768220311cf77ae64-5ca1-4768-87fc-8225cd52c847.png"
+        }
+      ]
+    }
+  },
+  "curated_feed_res_item": {
+    "status": 200,
+    "data": {
+      "SearchId": "",
+      "TotalCount": 10,
+      "EntityResults": [
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN129367",
+          "brandId": "BR113971",
+          "name": "Blue Tokai Coffee Roasters",
+          "cleanedName": "blue tokai coffee roasters",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/5f13f53e027835b64a89d6b4651d4908_featured_v22.png",
+          "brandLogo": "https://pd-onl-rtn-media.storage.googleapis.com/curated-list/brand-logologo-footer.webp",
+          "location": {
+            "lat": 12.92036255,
+            "lon": 77.68606342
+          },
+          "price": 280,
+          "numberOfRatings": 196,
+          "etaInMinutes": 36,
+          "distanceInKM": 3.5,
+          "address": {
+            "city": "Bangalore",
+            "area": "RMZ Ecoworld"
+          },
+          "knownFor": [
+            "american",
+            "coffee"
+          ],
+          "isOpen": true,
+          "trustMarkers": [
+            {
+              "type": "CHARM",
+              "name": "Lowest Price"
+            }
+          ],
+          "platformRating": {
+            "value": 4.5673076923076925,
+            "count": 104
+          },
+          "orderingEnabled": true
+        },
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN413396",
+          "brandId": "BR413344",
+          "name": "Hutum Pecha Bengali Cuisine",
+          "cleanedName": "hutum pecha bengali cuisine",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/b31f8c37d40d1623087e8af0ea69c27c_1732215477.jpg",
+          "location": {
+            "lat": 12.95657,
+            "lon": 77.70992
+          },
+          "price": 240,
+          "numberOfRatings": 39,
+          "etaInMinutes": 42,
+          "distanceInKM": 4.1,
+          "address": {
+            "city": "Bangalore",
+            "area": "Munnekollal Sankara Eye Hospital"
+          },
+          "knownFor": [
+            "bengali",
+            "biryani"
+          ],
+          "isOpen": true,
+          "trustMarkers": [
+            {
+              "type": "CHARM",
+              "name": "Lowest Price"
+            }
+          ],
+          "platformRating": {
+            "value": 4.134474327628373,
+            "count": 409
+          },
+          "orderingEnabled": true
+        },
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN414125",
+          "brandId": "BR414049",
+          "name": "Sri Lakshmi Biryani",
+          "cleanedName": "sri lakshmi biryani",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/RN414125.png",
+          "location": {
+            "lat": 12.95027791,
+            "lon": 77.70913696
+          },
+          "price": 80,
+          "numberOfRatings": 1312,
+          "etaInMinutes": 36,
+          "distanceInKM": 2.7,
+          "address": {
+            "city": "Bangalore",
+            "area": "Marathahalli"
+          },
+          "knownFor": [
+            "andhra",
+            "biryani"
+          ],
+          "isOpen": true,
+          "trustMarkers": [
+            {
+              "type": "CHARM",
+              "name": "Lowest Price"
+            }
+          ],
+          "platformRating": {
+            "value": 3.3613325158389555,
+            "count": 4843
+          },
+          "orderingEnabled": true
+        },
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN124569",
+          "brandId": "BR112775",
+          "name": "Theobroma",
+          "cleanedName": "theobroma",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/RN124547.jpg",
+          "location": {
+            "lat": 12.953477535121205,
+            "lon": 77.70045856405449
+          },
+          "price": 200,
+          "numberOfRatings": 217,
+          "etaInMinutes": 31,
+          "distanceInKM": 1.7,
+          "address": {
+            "city": "Bangalore",
+            "area": "MARATHAHALLI"
+          },
+          "knownFor": [
+            "cake",
+            "american"
+          ],
+          "isOpen": true,
+          "platformRating": {
+            "value": 4.196721311475409,
+            "count": 105
+          },
+          "orderingEnabled": true
+        },
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN414042",
+          "brandId": "BR413968",
+          "name": "Paratha Corner",
+          "cleanedName": "parathacorner",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/_item_RN414042_95213_20260127173123.jpg",
+          "location": {
+            "lat": 12.910172978970728,
+            "lon": 77.68157885247494
+          },
+          "price": 120,
+          "numberOfRatings": 150,
+          "etaInMinutes": 50,
+          "distanceInKM": 6.4,
+          "address": {
+            "city": "Bangalore",
+            "area": "Sarjapur"
+          },
+          "knownFor": [
+            "paratha",
+            "paratha"
+          ],
+          "isOpen": true,
+          "trustMarkers": [
+            {
+              "type": "CHARM",
+              "name": "Lowest Price"
+            }
+          ],
+          "platformRating": {
+            "value": 3.937974683544304,
+            "count": 740
+          },
+          "orderingEnabled": true
+        },
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN417788",
+          "brandId": "BR112581",
+          "name": "The Breakfast Nook",
+          "cleanedName": "breakfast nook",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/TBN%20thumbnail.jpg",
+          "location": {
+            "lat": 12.907229758031,
+            "lon": 77.675563080883
+          },
+          "price": 190,
+          "etaInMinutes": 49,
+          "distanceInKM": 6.4,
+          "address": {
+            "city": "Bengaluru",
+            "area": "Kasvanhalli"
+          },
+          "knownFor": [
+            "breakfast",
+            "eggs"
+          ],
+          "isOpen": true,
+          "platformRating": {
+            "value": 4.28679817905919,
+            "count": 659
+          },
+          "orderingEnabled": true
+        },
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN413236",
+          "brandId": "BR413188",
+          "name": "Brims Kitchen",
+          "cleanedName": "brims kitchen",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/_item_RN413236PP144715062_20260120102623.png",
+          "location": {
+            "lat": 12.93096,
+            "lon": 77.70338
+          },
+          "price": 190,
+          "numberOfRatings": 292,
+          "etaInMinutes": 37,
+          "distanceInKM": 1.7,
+          "address": {
+            "city": "Bangalore",
+            "area": "Kadubeesanahalli"
+          },
+          "knownFor": [
+            "chettinad",
+            "chinese"
+          ],
+          "isOpen": true,
+          "trustMarkers": [
+            {
+              "type": "CHARM",
+              "name": "Lowest Price"
+            }
+          ],
+          "platformRating": {
+            "value": 4.023743016759779,
+            "count": 1382
+          },
+          "orderingEnabled": true
+        },
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN414122",
+          "brandId": "BR414046",
+          "name": "Sri Jayadurga Tiffins",
+          "cleanedName": "sri jayadurga tiffins",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/1f6984163fdad83e90acf10beb16310e.png",
+          "location": {
+            "lat": 12.95027791,
+            "lon": 77.70913696
+          },
+          "price": 60,
+          "numberOfRatings": 1312,
+          "etaInMinutes": 40,
+          "distanceInKM": 2.7,
+          "address": {
+            "city": "Bangalore",
+            "area": "Marathahalli"
+          },
+          "knownFor": [
+            "dosa",
+            "dosa"
+          ],
+          "isOpen": true,
+          "trustMarkers": [
+            {
+              "type": "CHARM",
+              "name": "Lowest Price"
+            }
+          ],
+          "platformRating": {
+            "value": 3.892059553349876,
+            "count": 1562
+          },
+          "orderingEnabled": true
+        },
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN413042",
+          "brandId": "BR113513",
+          "name": "BLR Brewing Co",
+          "cleanedName": "blr brewing co",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/f4fb4a25d6f74378841c7428f2815dcc.png",
+          "location": {
+            "lat": 12.944323667598127,
+            "lon": 77.69459336486467
+          },
+          "price": 220,
+          "numberOfRatings": 157,
+          "etaInMinutes": 33,
+          "distanceInKM": 2.2,
+          "address": {
+            "city": "Bangalore",
+            "area": "Kadubeesanahalli"
+          },
+          "knownFor": [
+            "continental",
+            "chinese"
+          ],
+          "isOpen": true,
+          "trustMarkers": [
+            {
+              "type": "CHARM",
+              "name": "Lowest Price"
+            }
+          ],
+          "platformRating": {
+            "value": 4.295454545454545,
+            "count": 88
+          },
+          "orderingEnabled": true
+        },
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN123737",
+          "brandId": "BR112513",
+          "name": "Namo Andhra",
+          "cleanedName": "namo andhra",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/namo%20andra%20meals.png",
+          "location": {
+            "lat": 12.927822059947207,
+            "lon": 77.68870078635445
+          },
+          "price": 120,
+          "etaInMinutes": 37,
+          "distanceInKM": 2.3,
+          "address": {
+            "city": "Bangalore",
+            "area": "Bellandur"
+          },
+          "knownFor": [
+            "andhra",
+            "biryani"
+          ],
+          "isOpen": true,
+          "trustMarkers": [
+            {
+              "type": "CHARM",
+              "name": "Lowest Price"
+            }
+          ],
+          "platformRating": {
+            "value": 4.227353463587926,
+            "count": 1126
+          },
+          "orderingEnabled": true
+        }
+      ],
+      "FoodItems": null
+    }
+  },
+  "paginated_restaurant_feed": {
+    "status": 200,
+    "data": {
+      "SearchId": "",
+      "TotalCount": 10,
+      "EntityResults": [
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN414042",
+          "brandId": "BR413968",
+          "name": "Paratha Corner",
+          "cleanedName": "parathacorner",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/_item_RN414042_95213_20260127173123.jpg",
+          "location": {
+            "lat": 12.910172978970728,
+            "lon": 77.68157885247494
+          },
+          "price": 120,
+          "numberOfRatings": 150,
+          "etaInMinutes": 50,
+          "distanceInKM": 6.4,
+          "address": {
+            "city": "Bangalore",
+            "area": "Sarjapur"
+          },
+          "knownFor": [
+            "paratha",
+            "paratha"
+          ],
+          "isOpen": true,
+          "trustMarkers": [
+            {
+              "type": "CHARM",
+              "name": "Lowest Price"
+            }
+          ],
+          "platformRating": {
+            "value": 3.937974683544304,
+            "count": 740
+          },
+          "orderingEnabled": true
+        },
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN417788",
+          "brandId": "BR112581",
+          "name": "The Breakfast Nook",
+          "cleanedName": "breakfast nook",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/TBN%20thumbnail.jpg",
+          "location": {
+            "lat": 12.907229758031,
+            "lon": 77.675563080883
+          },
+          "price": 190,
+          "etaInMinutes": 49,
+          "distanceInKM": 6.4,
+          "address": {
+            "city": "Bengaluru",
+            "area": "Kasvanhalli"
+          },
+          "knownFor": [
+            "breakfast",
+            "eggs"
+          ],
+          "isOpen": true,
+          "platformRating": {
+            "value": 4.28679817905919,
+            "count": 659
+          },
+          "orderingEnabled": true
+        },
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN413236",
+          "brandId": "BR413188",
+          "name": "Brims Kitchen",
+          "cleanedName": "brims kitchen",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/_item_RN413236PP144715062_20260120102623.png",
+          "location": {
+            "lat": 12.93096,
+            "lon": 77.70338
+          },
+          "price": 190,
+          "numberOfRatings": 292,
+          "etaInMinutes": 37,
+          "distanceInKM": 1.7,
+          "address": {
+            "city": "Bangalore",
+            "area": "Kadubeesanahalli"
+          },
+          "knownFor": [
+            "chettinad",
+            "chinese"
+          ],
+          "isOpen": true,
+          "trustMarkers": [
+            {
+              "type": "CHARM",
+              "name": "Lowest Price"
+            }
+          ],
+          "platformRating": {
+            "value": 4.023743016759779,
+            "count": 1382
+          },
+          "orderingEnabled": true
+        },
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN129367",
+          "brandId": "BR113971",
+          "name": "Blue Tokai Coffee Roasters",
+          "cleanedName": "blue tokai coffee roasters",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/5f13f53e027835b64a89d6b4651d4908_featured_v22.png",
+          "brandLogo": "https://pd-onl-rtn-media.storage.googleapis.com/curated-list/brand-logologo-footer.webp",
+          "location": {
+            "lat": 12.92036255,
+            "lon": 77.68606342
+          },
+          "price": 280,
+          "numberOfRatings": 196,
+          "etaInMinutes": 36,
+          "distanceInKM": 3.5,
+          "address": {
+            "city": "Bangalore",
+            "area": "RMZ Ecoworld"
+          },
+          "knownFor": [
+            "american",
+            "coffee"
+          ],
+          "isOpen": true,
+          "trustMarkers": [
+            {
+              "type": "CHARM",
+              "name": "Lowest Price"
+            }
+          ],
+          "platformRating": {
+            "value": 4.5673076923076925,
+            "count": 104
+          },
+          "orderingEnabled": true
+        },
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN414122",
+          "brandId": "BR414046",
+          "name": "Sri Jayadurga Tiffins",
+          "cleanedName": "sri jayadurga tiffins",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/1f6984163fdad83e90acf10beb16310e.png",
+          "location": {
+            "lat": 12.95027791,
+            "lon": 77.70913696
+          },
+          "price": 60,
+          "numberOfRatings": 1312,
+          "etaInMinutes": 40,
+          "distanceInKM": 2.7,
+          "address": {
+            "city": "Bangalore",
+            "area": "Marathahalli"
+          },
+          "knownFor": [
+            "dosa",
+            "dosa"
+          ],
+          "isOpen": true,
+          "trustMarkers": [
+            {
+              "type": "CHARM",
+              "name": "Lowest Price"
+            }
+          ],
+          "platformRating": {
+            "value": 3.892059553349876,
+            "count": 1562
+          },
+          "orderingEnabled": true
+        },
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN413042",
+          "brandId": "BR113513",
+          "name": "BLR Brewing Co",
+          "cleanedName": "blr brewing co",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/f4fb4a25d6f74378841c7428f2815dcc.png",
+          "location": {
+            "lat": 12.944323667598127,
+            "lon": 77.69459336486467
+          },
+          "price": 220,
+          "numberOfRatings": 157,
+          "etaInMinutes": 33,
+          "distanceInKM": 2.2,
+          "address": {
+            "city": "Bangalore",
+            "area": "Kadubeesanahalli"
+          },
+          "knownFor": [
+            "continental",
+            "chinese"
+          ],
+          "isOpen": true,
+          "trustMarkers": [
+            {
+              "type": "CHARM",
+              "name": "Lowest Price"
+            }
+          ],
+          "platformRating": {
+            "value": 4.295454545454545,
+            "count": 88
+          },
+          "orderingEnabled": true
+        },
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN123737",
+          "brandId": "BR112513",
+          "name": "Namo Andhra",
+          "cleanedName": "namo andhra",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/namo%20andra%20meals.png",
+          "location": {
+            "lat": 12.927822059947207,
+            "lon": 77.68870078635445
+          },
+          "price": 120,
+          "etaInMinutes": 37,
+          "distanceInKM": 2.3,
+          "address": {
+            "city": "Bangalore",
+            "area": "Bellandur"
+          },
+          "knownFor": [
+            "andhra",
+            "biryani"
+          ],
+          "isOpen": true,
+          "trustMarkers": [
+            {
+              "type": "CHARM",
+              "name": "Lowest Price"
+            }
+          ],
+          "platformRating": {
+            "value": 4.227353463587926,
+            "count": 1126
+          },
+          "orderingEnabled": true
+        },
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN413396",
+          "brandId": "BR413344",
+          "name": "Hutum Pecha Bengali Cuisine",
+          "cleanedName": "hutum pecha bengali cuisine",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/b31f8c37d40d1623087e8af0ea69c27c_1732215477.jpg",
+          "location": {
+            "lat": 12.95657,
+            "lon": 77.70992
+          },
+          "price": 240,
+          "numberOfRatings": 39,
+          "etaInMinutes": 42,
+          "distanceInKM": 4.1,
+          "address": {
+            "city": "Bangalore",
+            "area": "Munnekollal Sankara Eye Hospital"
+          },
+          "knownFor": [
+            "bengali",
+            "biryani"
+          ],
+          "isOpen": true,
+          "trustMarkers": [
+            {
+              "type": "CHARM",
+              "name": "Lowest Price"
+            }
+          ],
+          "platformRating": {
+            "value": 4.134474327628373,
+            "count": 409
+          },
+          "orderingEnabled": true
+        },
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN414125",
+          "brandId": "BR414049",
+          "name": "Sri Lakshmi Biryani",
+          "cleanedName": "sri lakshmi biryani",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/RN414125.png",
+          "location": {
+            "lat": 12.95027791,
+            "lon": 77.70913696
+          },
+          "price": 80,
+          "numberOfRatings": 1312,
+          "etaInMinutes": 36,
+          "distanceInKM": 2.7,
+          "address": {
+            "city": "Bangalore",
+            "area": "Marathahalli"
+          },
+          "knownFor": [
+            "andhra",
+            "biryani"
+          ],
+          "isOpen": true,
+          "trustMarkers": [
+            {
+              "type": "CHARM",
+              "name": "Lowest Price"
+            }
+          ],
+          "platformRating": {
+            "value": 3.3613325158389555,
+            "count": 4843
+          },
+          "orderingEnabled": true
+        },
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN124569",
+          "brandId": "BR112775",
+          "name": "Theobroma",
+          "cleanedName": "theobroma",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/RN124547.jpg",
+          "location": {
+            "lat": 12.953477535121205,
+            "lon": 77.70045856405449
+          },
+          "price": 200,
+          "numberOfRatings": 217,
+          "etaInMinutes": 31,
+          "distanceInKM": 1.7,
+          "address": {
+            "city": "Bangalore",
+            "area": "MARATHAHALLI"
+          },
+          "knownFor": [
+            "cake",
+            "american"
+          ],
+          "isOpen": true,
+          "platformRating": {
+            "value": 4.196721311475409,
+            "count": 105
+          },
+          "orderingEnabled": true
+        }
+      ],
+      "FoodItems": null
+    }
+  },
+  "curated_list_details": {
+    "status": 200,
+    "data": [
+      {
+        "id": "687a2610a05189d0e37e7ab4",
+        "name": "North Indian",
+        "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/curated-list/curated-listnorth-indian-thali.png",
+        "backGroundColour": "",
+        "section": "",
+        "rank": 0,
+        "deepLinkUrl": "",
+        "coverImageUrl": "",
+        "subText": "",
+        "curatedListType": "",
+        "foodType": ""
+      },
+      {
+        "id": "687a26e5a05189d0e37e7ab7",
+        "name": "Biryani",
+        "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/curated-list/curated-listBiryani.png",
+        "backGroundColour": "",
+        "section": "",
+        "rank": 0,
+        "deepLinkUrl": "",
+        "coverImageUrl": "",
+        "subText": "",
+        "curatedListType": "",
+        "foodType": ""
+      },
+      {
+        "id": "687a2779a05189d0e37e7ab8",
+        "name": "Chinese",
+        "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/curated-list/curated-listchinese.png",
+        "backGroundColour": "",
+        "section": "",
+        "rank": 0,
+        "deepLinkUrl": "",
+        "coverImageUrl": "",
+        "subText": "",
+        "curatedListType": "",
+        "foodType": ""
+      },
+      {
+        "id": "687a27e5a05189d0e37e7aba",
+        "name": "Chicken",
+        "imageUrl": "https://storage.googleapis.com/pd-onl-rtn-media/curated-list/chicken.png",
+        "backGroundColour": "",
+        "section": "",
+        "rank": 0,
+        "deepLinkUrl": "",
+        "coverImageUrl": "",
+        "subText": "",
+        "curatedListType": "",
+        "foodType": ""
+      },
+      {
+        "id": "687a2845a05189d0e37e7abc",
+        "name": "Desserts",
+        "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/curated-list/curated-listdessert.png",
+        "backGroundColour": "",
+        "section": "",
+        "rank": 0,
+        "deepLinkUrl": "",
+        "coverImageUrl": "",
+        "subText": "",
+        "curatedListType": "",
+        "foodType": ""
+      },
+      {
+        "id": "687a28c3a05189d0e37e7abd",
+        "name": "Burger",
+        "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/curated-list/curated-listburger.png",
+        "backGroundColour": "",
+        "section": "",
+        "rank": 0,
+        "deepLinkUrl": "",
+        "coverImageUrl": "",
+        "subText": "",
+        "curatedListType": "",
+        "foodType": ""
+      },
+      {
+        "id": "687a2948a05189d0e37e7abe",
+        "name": "Snacks",
+        "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/curated-list/curated-listsnacks.png",
+        "backGroundColour": "",
+        "section": "",
+        "rank": 0,
+        "deepLinkUrl": "",
+        "coverImageUrl": "",
+        "subText": "",
+        "curatedListType": "",
+        "foodType": ""
+      },
+      {
+        "id": "687a29a5a05189d0e37e7abf",
+        "name": "Tea",
+        "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/curated-list/curated-listTea2.png",
+        "backGroundColour": "",
+        "section": "",
+        "rank": 0,
+        "deepLinkUrl": "",
+        "coverImageUrl": "",
+        "subText": "",
+        "curatedListType": "",
+        "foodType": ""
+      },
+      {
+        "id": "687a29cca05189d0e37e7ac0",
+        "name": "Coffee",
+        "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/curated-list/curated-listcoffee.png",
+        "backGroundColour": "",
+        "section": "",
+        "rank": 0,
+        "deepLinkUrl": "",
+        "coverImageUrl": "",
+        "subText": "",
+        "curatedListType": "",
+        "foodType": ""
+      },
+      {
+        "id": "689b8c514b5ecde5e3dd0d93",
+        "name": "Sandwich",
+        "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/curated-list/curated-listsandwich.png",
+        "backGroundColour": "",
+        "section": "",
+        "rank": 0,
+        "deepLinkUrl": "",
+        "coverImageUrl": "",
+        "subText": "",
+        "curatedListType": "",
+        "foodType": ""
+      },
+      {
+        "id": "68cbaab84e1601b7f79f18b2",
+        "name": "Momos",
+        "imageUrl": "https://storage.googleapis.com/pd-onl-rtn-media/curated-list/momos.png",
+        "backGroundColour": "",
+        "section": "",
+        "rank": 0,
+        "deepLinkUrl": "",
+        "coverImageUrl": "",
+        "subText": "",
+        "curatedListType": "",
+        "foodType": ""
+      },
+      {
+        "id": "68ef4d0b9314bf7e34fcbfb3",
+        "name": "Thalis",
+        "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/curated-list/curated-listsouth-indian-thali%20%281%29.png",
+        "backGroundColour": "",
+        "section": "",
+        "rank": 0,
+        "deepLinkUrl": "",
+        "coverImageUrl": "",
+        "subText": "",
+        "curatedListType": "",
+        "foodType": ""
+      },
+      {
+        "id": "69008dc41ef8004ee099600c",
+        "name": "Rolls",
+        "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/curated-list/curated-listrolls-wraps.png",
+        "backGroundColour": "",
+        "section": "",
+        "rank": 0,
+        "deepLinkUrl": "",
+        "coverImageUrl": "",
+        "subText": "",
+        "curatedListType": "",
+        "foodType": ""
+      },
+      {
+        "id": "690b2d68ebebd5850cddceaf",
+        "name": "Bowls",
+        "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/curated-list/curated-listbowls.png",
+        "backGroundColour": "",
+        "section": "",
+        "rank": 0,
+        "deepLinkUrl": "",
+        "coverImageUrl": "",
+        "subText": "",
+        "curatedListType": "",
+        "foodType": ""
+      },
+      {
+        "id": "690b395aebebd5850cddceb2",
+        "name": "Dosa",
+        "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/curated-list/curated-listdosa.png",
+        "backGroundColour": "",
+        "section": "",
+        "rank": 0,
+        "deepLinkUrl": "",
+        "coverImageUrl": "",
+        "subText": "",
+        "curatedListType": "",
+        "foodType": ""
+      },
+      {
+        "id": "698b22025cc399dd2d3aa3be",
+        "name": "Idli",
+        "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/curated-list/curated-listcurated-listidli.png",
+        "backGroundColour": "",
+        "section": "",
+        "rank": 0,
+        "deepLinkUrl": "",
+        "coverImageUrl": "",
+        "subText": "",
+        "curatedListType": "",
+        "foodType": ""
+      },
+      {
+        "id": "698b25915cc399dd2d3aa3c2",
+        "name": "Pizza",
+        "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/curated-list/curated-listpizza.png",
+        "backGroundColour": "",
+        "section": "",
+        "rank": 0,
+        "deepLinkUrl": "",
+        "coverImageUrl": "",
+        "subText": "",
+        "curatedListType": "",
+        "foodType": ""
+      },
+      {
+        "id": "698b26335cc399dd2d3aa3c4",
+        "name": "Salad",
+        "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/curated-list/curated-listsalad.png",
+        "backGroundColour": "",
+        "section": "",
+        "rank": 0,
+        "deepLinkUrl": "",
+        "coverImageUrl": "",
+        "subText": "",
+        "curatedListType": "",
+        "foodType": ""
+      },
+      {
+        "id": "698b2cbe5cc399dd2d3aa3c6",
+        "name": "Shawarma",
+        "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/curated-list/curated-listshawarma.png",
+        "backGroundColour": "",
+        "section": "",
+        "rank": 0,
+        "deepLinkUrl": "",
+        "coverImageUrl": "",
+        "subText": "",
+        "curatedListType": "",
+        "foodType": ""
+      },
+      {
+        "id": "698b2d6c5cc399dd2d3aa3c8",
+        "name": "Pasta",
+        "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/curated-list/curated-listitalian.png",
+        "backGroundColour": "",
+        "section": "",
+        "rank": 0,
+        "deepLinkUrl": "",
+        "coverImageUrl": "",
+        "subText": "",
+        "curatedListType": "",
+        "foodType": ""
+      }
+    ]
+  },
+  "past_orders": {
+    "status": 200,
+    "data": {
+      "SearchId": "",
+      "TotalCount": 0,
+      "EntityResults": [
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN128392",
+          "brandId": "BR112545",
+          "name": "Burger It Up",
+          "cleanedName": "burger it up",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/RN128287.jpg",
+          "brandLogo": "https://pd-onl-rtn-media.storage.googleapis.com/curated-list/brand-logoBR112545.png",
+          "location": {
+            "lat": 12.937207,
+            "lon": 77.702434
+          },
+          "price": 110,
+          "etaInMinutes": 29,
+          "distanceInKM": 0.9,
+          "address": {
+            "city": "Bangalore",
+            "area": "Panathur"
+          },
+          "knownFor": [
+            "american",
+            "burger"
+          ],
+          "isOpen": true,
+          "displayTags": [
+            "Ordered 4 months ago"
+          ],
+          "timings": [
+            {
+              "day": "monday",
+              "start": 600,
+              "end": 1440
+            },
+            {
+              "day": "monday",
+              "start": 0,
+              "end": 240
+            },
+            {
+              "day": "tuesday",
+              "start": 600,
+              "end": 1440
+            },
+            {
+              "day": "tuesday",
+              "start": 0,
+              "end": 240
+            },
+            {
+              "day": "wednesday",
+              "start": 600,
+              "end": 1440
+            },
+            {
+              "day": "wednesday",
+              "start": 0,
+              "end": 240
+            },
+            {
+              "day": "thursday",
+              "start": 600,
+              "end": 1440
+            },
+            {
+              "day": "thursday",
+              "start": 0,
+              "end": 240
+            },
+            {
+              "day": "friday",
+              "start": 600,
+              "end": 1440
+            },
+            {
+              "day": "friday",
+              "start": 0,
+              "end": 240
+            },
+            {
+              "day": "saturday",
+              "start": 600,
+              "end": 1440
+            },
+            {
+              "day": "saturday",
+              "start": 0,
+              "end": 240
+            },
+            {
+              "day": "sunday",
+              "start": 600,
+              "end": 1440
+            },
+            {
+              "day": "sunday",
+              "start": 0,
+              "end": 240
+            }
+          ],
+          "trustMarkers": [
+            {
+              "type": "CHARM",
+              "name": "Lowest Price"
+            }
+          ],
+          "platformRating": {
+            "value": 3.9027454630060494,
+            "count": 2099
+          },
+          "orderingEnabled": true
+        },
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN133504",
+          "brandId": "BR112583",
+          "name": "Sharief Bhai Biryani",
+          "cleanedName": "sharief bhai biryani",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/BR112583.png",
+          "brandLogo": "https://storage.googleapis.com/pd-onl-rtn-media/brand_logos/sharief%20bhai.png",
+          "location": {
+            "lat": 12.919445122594803,
+            "lon": 77.6686486600293
+          },
+          "price": 200,
+          "numberOfRatings": 4052,
+          "etaInMinutes": 41,
+          "distanceInKM": 4.1,
+          "address": {
+            "city": "Bangalore",
+            "area": "Sarjapur"
+          },
+          "knownFor": [
+            "biryani",
+            "hyderabadi"
+          ],
+          "isOpen": true,
+          "displayTags": [
+            "Ordered 2 months ago"
+          ],
+          "timings": [
+            {
+              "day": "monday",
+              "start": 0,
+              "end": 180
+            },
+            {
+              "day": "monday",
+              "start": 660,
+              "end": 1439
+            },
+            {
+              "day": "tuesday",
+              "start": 0,
+              "end": 180
+            },
+            {
+              "day": "tuesday",
+              "start": 660,
+              "end": 1439
+            },
+            {
+              "day": "wednesday",
+              "start": 0,
+              "end": 180
+            },
+            {
+              "day": "wednesday",
+              "start": 660,
+              "end": 1439
+            },
+            {
+              "day": "thursday",
+              "start": 0,
+              "end": 180
+            },
+            {
+              "day": "thursday",
+              "start": 660,
+              "end": 1439
+            },
+            {
+              "day": "friday",
+              "start": 0,
+              "end": 180
+            },
+            {
+              "day": "friday",
+              "start": 660,
+              "end": 1439
+            },
+            {
+              "day": "saturday",
+              "start": 0,
+              "end": 180
+            },
+            {
+              "day": "saturday",
+              "start": 600,
+              "end": 1439
+            },
+            {
+              "day": "sunday",
+              "start": 0,
+              "end": 180
+            },
+            {
+              "day": "sunday",
+              "start": 600,
+              "end": 1439
+            }
+          ],
+          "platformRating": {
+            "value": 3.9586776859504136,
+            "count": 1402
+          },
+          "orderingEnabled": true
+        },
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN123711",
+          "brandId": "BR112505",
+          "name": "Andhra Gunpowder",
+          "cleanedName": "andhra gunpowder",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/RN123708.jpg",
+          "brandLogo": "https://pd-onl-rtn-media.storage.googleapis.com/curated-list/brand-logoandhra%20gunpowder.png",
+          "location": {
+            "lat": 12.927820303397592,
+            "lon": 77.68870232969935
+          },
+          "price": 190,
+          "numberOfRatings": 103,
+          "etaInMinutes": 37,
+          "distanceInKM": 2.3,
+          "address": {
+            "city": "Bangalore",
+            "area": "Bellandur"
+          },
+          "knownFor": [
+            "biryani",
+            "andhra"
+          ],
+          "isOpen": true,
+          "displayTags": [
+            "Ordered 3 months ago"
+          ],
+          "timings": [
+            {
+              "day": "monday",
+              "start": 660,
+              "end": 1440
+            },
+            {
+              "day": "monday",
+              "start": 0,
+              "end": 60
+            },
+            {
+              "day": "tuesday",
+              "start": 660,
+              "end": 1440
+            },
+            {
+              "day": "tuesday",
+              "start": 0,
+              "end": 60
+            },
+            {
+              "day": "wednesday",
+              "start": 660,
+              "end": 1440
+            },
+            {
+              "day": "wednesday",
+              "start": 0,
+              "end": 60
+            },
+            {
+              "day": "thursday",
+              "start": 660,
+              "end": 1440
+            },
+            {
+              "day": "thursday",
+              "start": 0,
+              "end": 60
+            },
+            {
+              "day": "friday",
+              "start": 660,
+              "end": 1440
+            },
+            {
+              "day": "friday",
+              "start": 0,
+              "end": 60
+            },
+            {
+              "day": "saturday",
+              "start": 660,
+              "end": 1440
+            },
+            {
+              "day": "saturday",
+              "start": 0,
+              "end": 60
+            },
+            {
+              "day": "sunday",
+              "start": 660,
+              "end": 1440
+            },
+            {
+              "day": "sunday",
+              "start": 0,
+              "end": 60
+            }
+          ],
+          "trustMarkers": [
+            {
+              "type": "CHARM",
+              "name": "Lowest Price"
+            }
+          ],
+          "platformRating": {
+            "value": 4.160714285714279,
+            "count": 896
+          },
+          "orderingEnabled": true
+        },
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN123494",
+          "brandId": "BR112502",
+          "name": "TEXAS BURGERS",
+          "cleanedName": "texas burgers",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/RN125326.jpg",
+          "location": {
+            "lat": 12.913203440656327,
+            "lon": 77.67859104572284
+          },
+          "price": 160,
+          "etaInMinutes": 41,
+          "distanceInKM": 5.8,
+          "address": {
+            "city": "Bangalore",
+            "area": "Sarjapur"
+          },
+          "knownFor": [
+            "american",
+            "beverage"
+          ],
+          "isOpen": true,
+          "displayTags": [
+            "Ordered 10 months ago"
+          ],
+          "timings": [
+            {
+              "day": "monday",
+              "start": 720,
+              "end": 1440
+            },
+            {
+              "day": "tuesday",
+              "start": 720,
+              "end": 1440
+            },
+            {
+              "day": "wednesday",
+              "start": 720,
+              "end": 1440
+            },
+            {
+              "day": "thursday",
+              "start": 720,
+              "end": 1440
+            },
+            {
+              "day": "friday",
+              "start": 720,
+              "end": 1440
+            },
+            {
+              "day": "saturday",
+              "start": 720,
+              "end": 1440
+            },
+            {
+              "day": "sunday",
+              "start": 720,
+              "end": 1440
+            }
+          ],
+          "trustMarkers": [
+            {
+              "type": "CHARM",
+              "name": "Lowest Price"
+            }
+          ],
+          "platformRating": {
+            "value": 3.9678714859437747,
+            "count": 199
+          },
+          "orderingEnabled": true
+        },
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN419853",
+          "brandId": "BR419438",
+          "name": "Madurai Famous Jigarthanda",
+          "cleanedName": "madurai famous jigarthanda",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/RN419853_93000.png",
+          "location": {
+            "lat": 12.949682333825075,
+            "lon": 77.70152308279346
+          },
+          "price": 140,
+          "numberOfRatings": 365,
+          "etaInMinutes": 30,
+          "distanceInKM": 1.6,
+          "address": {
+            "city": "Bangalore",
+            "area": "Marathahalli"
+          },
+          "knownFor": [
+            "beverage",
+            "tamil"
+          ],
+          "isOpen": true,
+          "displayTags": [
+            "Ordered 2 months ago"
+          ],
+          "timings": [
+            {
+              "day": "monday",
+              "start": 705,
+              "end": 855
+            },
+            {
+              "day": "monday",
+              "start": 1005,
+              "end": 1350
+            },
+            {
+              "day": "tuesday",
+              "start": 705,
+              "end": 855
+            },
+            {
+              "day": "tuesday",
+              "start": 1005,
+              "end": 1350
+            },
+            {
+              "day": "wednesday",
+              "start": 705,
+              "end": 855
+            },
+            {
+              "day": "wednesday",
+              "start": 1005,
+              "end": 1350
+            },
+            {
+              "day": "thursday",
+              "start": 705,
+              "end": 855
+            },
+            {
+              "day": "thursday",
+              "start": 1005,
+              "end": 1350
+            },
+            {
+              "day": "friday",
+              "start": 705,
+              "end": 855
+            },
+            {
+              "day": "friday",
+              "start": 1005,
+              "end": 1350
+            },
+            {
+              "day": "saturday",
+              "start": 705,
+              "end": 855
+            },
+            {
+              "day": "saturday",
+              "start": 1005,
+              "end": 1350
+            },
+            {
+              "day": "sunday",
+              "start": 705,
+              "end": 855
+            },
+            {
+              "day": "sunday",
+              "start": 1005,
+              "end": 1350
+            }
+          ],
+          "platformRating": {
+            "value": 4.223880597014926,
+            "count": 104
+          },
+          "orderingEnabled": true
+        },
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN124049",
+          "brandId": "BR112643",
+          "name": "TOP - TASTE OF PROTEIN",
+          "cleanedName": "taste of protein",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/RF%20Shoot3837%20%281%29.jpg",
+          "location": {
+            "lat": 12.951231399999715,
+            "lon": 77.71350539999492
+          },
+          "price": 170,
+          "numberOfRatings": 13,
+          "etaInMinutes": 42,
+          "distanceInKM": 3.2,
+          "address": {
+            "city": "Bangalore",
+            "area": "Munnekollal_Marathalli"
+          },
+          "knownFor": [
+            "sandwich",
+            "bowl"
+          ],
+          "isOpen": true,
+          "displayTags": [
+            "Ordered 2 months ago"
+          ],
+          "timings": [
+            {
+              "day": "monday",
+              "start": 570,
+              "end": 1440
+            },
+            {
+              "day": "monday",
+              "start": 0,
+              "end": 120
+            },
+            {
+              "day": "tuesday",
+              "start": 570,
+              "end": 1440
+            },
+            {
+              "day": "tuesday",
+              "start": 0,
+              "end": 120
+            },
+            {
+              "day": "wednesday",
+              "start": 570,
+              "end": 1440
+            },
+            {
+              "day": "wednesday",
+              "start": 0,
+              "end": 120
+            },
+            {
+              "day": "thursday",
+              "start": 570,
+              "end": 1440
+            },
+            {
+              "day": "thursday",
+              "start": 0,
+              "end": 120
+            },
+            {
+              "day": "friday",
+              "start": 570,
+              "end": 1440
+            },
+            {
+              "day": "friday",
+              "start": 0,
+              "end": 180
+            },
+            {
+              "day": "saturday",
+              "start": 570,
+              "end": 1440
+            },
+            {
+              "day": "saturday",
+              "start": 0,
+              "end": 180
+            },
+            {
+              "day": "sunday",
+              "start": 570,
+              "end": 1440
+            },
+            {
+              "day": "sunday",
+              "start": 0,
+              "end": 840
+            }
+          ],
+          "trustMarkers": [
+            {
+              "type": "CHARM",
+              "name": "Lowest Price"
+            }
+          ],
+          "platformRating": {
+            "value": 4.155025553662694,
+            "count": 587
+          },
+          "orderingEnabled": true
+        },
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN422506",
+          "brandId": "BR421977",
+          "name": "First Wave Fries",
+          "cleanedName": "first wave fries",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/27.png",
+          "location": {
+            "lat": 12.927110855891,
+            "lon": 77.69587276506
+          },
+          "price": 120,
+          "numberOfRatings": 46,
+          "etaInMinutes": 35,
+          "distanceInKM": 2.1,
+          "address": {
+            "city": "Bengaluru",
+            "area": "Varthur"
+          },
+          "knownFor": [
+            "burger"
+          ],
+          "isOpen": true,
+          "displayTags": [
+            "Ordered 1 month ago"
+          ],
+          "timings": [
+            {
+              "day": "monday",
+              "start": 960,
+              "end": 1380
+            },
+            {
+              "day": "tuesday",
+              "start": 780,
+              "end": 1380
+            },
+            {
+              "day": "wednesday",
+              "start": 780,
+              "end": 1380
+            },
+            {
+              "day": "thursday",
+              "start": 780,
+              "end": 1380
+            },
+            {
+              "day": "friday",
+              "start": 780,
+              "end": 1380
+            },
+            {
+              "day": "saturday",
+              "start": 780,
+              "end": 1380
+            },
+            {
+              "day": "sunday",
+              "start": 780,
+              "end": 1380
+            }
+          ],
+          "trustMarkers": [
+            {
+              "type": "CHARM",
+              "name": "Lowest Price"
+            }
+          ],
+          "platformRating": {
+            "value": 3.967479674796748,
+            "count": 107
+          },
+          "orderingEnabled": true
+        },
+        {
+          "entityType": "RESTAURANT",
+          "entityId": "RN128877",
+          "brandId": "BR114937",
+          "name": "Paris Panini - Gourmet Sandwiches & Wraps",
+          "cleanedName": "paris panini gourmet sandwiches",
+          "imageUrl": "https://pd-onl-rtn-media.storage.googleapis.com/rnt-images/vegan-mushroom-wraps-15.jpg",
+          "location": {
+            "lat": 12.919755662826192,
+            "lon": 77.68491567979531
+          },
+          "price": 260,
+          "etaInMinutes": 38,
+          "distanceInKM": 2.9,
+          "address": {
+            "city": "Bangalore",
+            "area": "Bellandur"
+          },
+          "knownFor": [
+            "healthy",
+            "italian"
+          ],
+          "isOpen": true,
+          "displayTags": [
+            "Ordered 2 months ago"
+          ],
+          "timings": [
+            {
+              "day": "monday",
+              "start": 690,
+              "end": 1380
+            },
+            {
+              "day": "tuesday",
+              "start": 690,
+              "end": 1380
+            },
+            {
+              "day": "wednesday",
+              "start": 690,
+              "end": 1380
+            },
+            {
+              "day": "thursday",
+              "start": 690,
+              "end": 1380
+            },
+            {
+              "day": "friday",
+              "start": 690,
+              "end": 1410
+            },
+            {
+              "day": "saturday",
+              "start": 690,
+              "end": 1410
+            },
+            {
+              "day": "sunday",
+              "start": 690,
+              "end": 1410
+            }
+          ],
+          "trustMarkers": [
+            {
+              "type": "CHARM",
+              "name": "Lowest Price"
+            }
+          ],
+          "platformRating": {
+            "value": 4.615517241379307,
+            "count": 580
+          },
+          "orderingEnabled": true
+        }
+      ],
+      "FoodItems": null
+    }
+  }
+}

@@ -1,0 +1,46 @@
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { FontFamily } from '@/theme/typography';
+
+import { BestRatedCard } from '@/features/homepage/components/BestRatedCard';
+import { Spacing } from '@/utils/constants';
+import type { RestaurantEntity } from '@/types/fixtures';
+
+interface CuratedRestaurantRailProps {
+  title: string;
+  items: RestaurantEntity[];
+}
+
+export function CuratedRestaurantRail({ title, items }: CuratedRestaurantRailProps) {
+  if (!items.length) return null;
+  return (
+    <View style={styles.wrap}>
+      <Text style={styles.title}>{title}</Text>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.list}
+        decelerationRate="fast">
+        {items.map((item) => (
+          <BestRatedCard key={item.entityId} item={item} />
+        ))}
+      </ScrollView>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  wrap: {
+    marginTop: Spacing.xxxl,
+  },
+  title: {
+    fontSize: 14,
+    fontFamily: FontFamily.semiBold,
+    color: '#333333',
+    paddingHorizontal: Spacing.lg,
+    marginBottom: Spacing.md,
+  },
+  list: {
+    paddingHorizontal: Spacing.lg,
+    gap: Spacing.md,
+  },
+});
