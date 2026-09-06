@@ -25,10 +25,22 @@ Then open it (please try both iOS and Android if you can):
 - **Android Emulator** — press `a` (needs Android Studio + a virtual device)
 - **Real phone** — install **Expo Go** and scan the QR code (phone on the same Wi-Fi)
 
-> On a real **iPhone**, Expo Go SDK 57 makes you log in first: run `npx expo login`, then log
-> into the Expo Go app with the same account
-> ([why](https://expo.dev/changelog/expo-go-57-login)).
-> The iOS Simulator and Android don't need this.
+### Note for running on a real iPhone
+
+Starting with Expo Go SDK 57, Expo now requires you to be logged in with an Expo account to open
+a project on a physical iPhone — you have to be signed in both in the terminal and in the Expo Go
+app, using the same account. This is an Expo change, not something in this project
+([their announcement](https://expo.dev/changelog/expo-go-57-login)).
+
+One-time setup:
+
+1. Make a free account at https://expo.dev/signup
+2. In the terminal, run `npx expo login` and sign in
+3. In the Expo Go app on the phone, open the account tab and sign in with the same account
+4. Run `npx expo start` and scan the QR code
+
+The **iOS Simulator** and **Android** (emulator or Expo Go) do not need any of this — they open
+straight away. So if you'd rather skip the account step, those are the quickest options.
 
 ## How the data flows
 
