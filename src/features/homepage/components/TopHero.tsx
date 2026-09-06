@@ -51,7 +51,11 @@ export function TopHero({
           <VegToggle value={isVeg} onValueChange={onToggleVeg} />
         </View>
         <View style={styles.avatar}>
-          <Text style={styles.avatarEmoji}>🙂</Text>
+          <Image
+            source={require('@/assets/images/profile.png')}
+            style={styles.avatarImage}
+            contentFit="cover"
+          />
         </View>
       </View>
 
@@ -156,9 +160,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
   },
-  avatarEmoji: {
-    fontSize: 16,
+  avatarImage: {
+    width: AVATAR_SIZE,
+    height: AVATAR_SIZE,
+    borderRadius: AVATAR_SIZE / 2,
   },
   searchRow: {
     flexDirection: 'row',
