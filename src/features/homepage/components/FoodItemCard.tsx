@@ -18,6 +18,10 @@ export const FoodItemCard = memo(function FoodItemCard({ item }: { item: FoodIte
   const oldPrice =
     item.price > newPrice ? item.price : Math.round(newPrice / 0.95);
   const rating = item.ResRatingResponse?.value;
+  const isVeg = item.vegOrNonVeg === 'veg';
+  const vegIcon = isVeg
+    ? require('@/assets/images/green.png')
+    : require('@/assets/images/red.png');
 
   return (
     <Pressable style={({ pressed }) => [styles.card, pressed && styles.pressed]}>
@@ -40,8 +44,8 @@ export const FoodItemCard = memo(function FoodItemCard({ item }: { item: FoodIte
       <View style={styles.body}>
       <Text style={styles.name} numberOfLines={2}>
         <RNImage
-          source={require('@/assets/images/red.png')}
-          style={styles.vegIcon}
+          source={vegIcon}
+          style={[styles.vegIcon, isVeg && styles.vegIconGreen]}
           resizeMode="contain"
         />
         <Text style={styles.nameGap}> </Text>
@@ -122,6 +126,10 @@ const styles = StyleSheet.create({
   vegIcon: {
     width: 12,
     height: 8,
+  },
+  vegIconGreen: {
+    width: 16,
+    height: 11,
   },
   nameGap: {
     fontSize: 16,
