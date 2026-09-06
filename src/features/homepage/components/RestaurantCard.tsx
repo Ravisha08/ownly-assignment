@@ -1,19 +1,26 @@
-import { Image } from 'expo-image';
 import { FontFamily } from '@/theme/typography';
-import { Image as RNImage, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image } from 'expo-image';
+import { memo } from 'react';
+import { Pressable, Image as RNImage, StyleSheet, Text, View } from 'react-native';
 
-import { Colors, FontSize, Radius, Shadow, Spacing } from '@/utils/constants';
 import type { RestaurantEntity } from '@/types/fixtures';
+import { Colors, FontSize, Radius, Spacing } from '@/utils/constants';
+import { titleCase } from '@/utils/text';
 
 const diamondShine = require('@/assets/images/diamond_shine.png');
 const moodHeart = require('@/assets/images/mood_heart.png');
 const chessQueen = require('@/assets/images/chess_queen.png');
+const lowestPrice = require('@/assets/images/lowest_price.png');
 const starIcon = require('@/assets/images/star.png');
 const boltIcon = require('@/assets/images/bolt.png');
 
 // Visual treatment per badge label — icon + colours. Fallback covers real trustMarkers
 // like "Lowest Price".
-const BADGE_STYLES: Record<string, { icon: number; bg: string; color: string }> = {
+const BADGE_STYLES: Record<
+  string,
+  { icon: number; bg: string; color: string; iconColor?: string; tintIcon?: boolean }
+> = {
+  'Lowest Price': { icon: lowestPrice, bg: '#C7F464', color: '#4B7400', tintIcon: false },
   'Hidden Gem': { icon: diamondShine, bg: '#E3F6FF', color: '#006DFF' },
   'Crowd Crush': { icon: moodHeart, bg: '#FDECEA', color: '#C6412E' },
   'Regional Royalty': { icon: chessQueen, bg: '#FFFCE6', color: '#ED7756' },
@@ -41,9 +48,9 @@ function pickDecorativeBadge(entityId: string) {
   return hash % 2 === 0 ? DECORATIVE_BADGES[hash % DECORATIVE_BADGES.length] : null;
 }
 
-export function RestaurantCard({ item, variant = 'full' }: RestaurantCardProps) {
+export const RestaurantCard = memo(function RestaurantCard({ item, variant = 'full' }: RestaurantCardProps) {
   const isCompact = variant === 'compact';
-  const knownFor = item.knownFor?.filter(Boolean).join(', ');
+  const knownFor = item.knownFor?.filter(Boolean).map(titleCase).join(', ');
   const badge = item.trustMarkers?.[0]?.name ?? pickDecorativeBadge(item.entityId);
   const badgeStyle = badge ? BADGE_STYLES[badge] ?? DEFAULT_BADGE_STYLE : null;
 
@@ -63,12 +70,22 @@ export function RestaurantCard({ item, variant = 'full' }: RestaurantCardProps) 
         />
         {badge && badgeStyle ? (
           <View style={[styles.trustBadge, { backgroundColor: badgeStyle.bg }]}>
-            <RNImage source={badgeStyle.icon} style={styles.trustBadgeIcon} resizeMode="contain" />
+            <RNImage
+              source={badgeStyle.icon}
+              style={[
+                styles.trustBadgeIcon,
+                badgeStyle.tintIcon === false
+                  ? null
+                  : { tintColor: badgeStyle.iconColor ?? badgeStyle.color },
+              ]}
+              resizeMode="contain"
+            />
             <Text style={[styles.trustBadgeText, { color: badgeStyle.color }]}>{badge}</Text>
           </View>
         ) : null}
         {knownFor ? (
           <View style={styles.captionWrap}>
+            <View style={styles.captionAccent} />
             <View style={styles.captionBar}>
               <Text style={styles.captionText} numberOfLines={1}>
                 Famous for its {knownFor}
@@ -113,13 +130,13 @@ export function RestaurantCard({ item, variant = 'full' }: RestaurantCardProps) 
       </View>
     </Pressable>
   );
-}
+});
 
 const styles = StyleSheet.create({
   card: {
     backgroundColor: Colors.surface,
     borderRadius: Radius.lg,
-    ...Shadow.card,
+    boxShadow: '0px 1px 4px 0px rgba(17, 12, 46, 0.12)',
   },
   cardFull: {
     width: '100%',
@@ -174,10 +191,15 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 14,
     maxWidth: '82%',
+    flexDirection: 'row',
+    alignItems: 'stretch',
+  },
+  captionAccent: {
+    width: 4,
+    backgroundColor: '#DE4F85',
   },
   captionBar: {
-    borderLeftWidth: 4,
-    borderLeftColor: '#DE4F85',
+    flex: 1,
     backgroundColor: '#333333E5',
     borderTopRightRadius: 32,
     borderBottomRightRadius: 32,
@@ -272,7 +294,8 @@ const styles = StyleSheet.create({
     height: 4,
     borderRadius: 2,
     backgroundColor: '#666666',
-    marginHorizontal: 6,
+    marginLeft: 4,
+    marginRight: 3,
   },
   boltIcon: {
     width: 12,

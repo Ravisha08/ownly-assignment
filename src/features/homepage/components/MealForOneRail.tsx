@@ -2,7 +2,7 @@ import { FontFamily } from '@/theme/typography';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import { CARD_WIDTH, FoodItemCard } from '@/features/homepage/components/FoodItemCard';
+import { FoodItemCard } from '@/features/homepage/components/FoodItemCard';
 import type { FoodItem } from '@/types/fixtures';
 import { Spacing } from '@/utils/constants';
 
@@ -46,8 +46,7 @@ export function MealForOneRail({ items }: MealForOneRailProps) {
         showsHorizontalScrollIndicator={false}
         style={styles.scroll}
         contentContainerStyle={styles.list}
-        decelerationRate="fast"
-        snapToInterval={CARD_WIDTH + 16}>
+        decelerationRate="normal">
         {items.map((item) => (
           <FoodItemCard key={item.foodItemId} item={item} />
         ))}

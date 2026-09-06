@@ -1,4 +1,5 @@
 import { Image } from 'expo-image';
+import { memo } from 'react';
 import { FontFamily } from '@/theme/typography';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
@@ -7,7 +8,7 @@ import type { RestaurantEntity } from '@/types/fixtures';
 const starIcon = require('@/assets/images/star.png');
 const boltIcon = require('@/assets/images/bolt.png');
 
-const CARD_WIDTH = 155;
+export const CARD_WIDTH = 155;
 const CARD_HEIGHT = 214;
 const IMAGE_SIZE = 131;
 
@@ -16,7 +17,7 @@ function formatCount(count: number) {
   return `${count}`;
 }
 
-export function ReorderCard({ item }: { item: RestaurantEntity }) {
+export const ReorderCard = memo(function ReorderCard({ item }: { item: RestaurantEntity }) {
   const rating = item.platformRating;
   return (
     <Pressable style={({ pressed }) => [styles.card, pressed && styles.pressed]}>
@@ -53,7 +54,7 @@ export function ReorderCard({ item }: { item: RestaurantEntity }) {
       ) : null}
     </Pressable>
   );
-}
+});
 
 const styles = StyleSheet.create({
   card: {
@@ -61,16 +62,9 @@ const styles = StyleSheet.create({
     height: CARD_HEIGHT,
     backgroundColor: '#FFFFFF',
     borderRadius: 16,
-    borderWidth: 1,
-    borderColor: '#F9F9F9',
+    boxShadow: '0px 1px 4px 0px rgba(17, 12, 46, 0.12)',
     paddingVertical: 8,
     paddingHorizontal: 12,
-    overflow: 'hidden',
-    shadowColor: '#DDDDDD',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 2,
   },
   pressed: {
     opacity: 0.85,

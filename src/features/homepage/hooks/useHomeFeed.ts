@@ -31,15 +31,16 @@ export function useHomeFeed() {
   // __DEV__-only demo switch: flips which mocked serviceability response is returned,
   // so both states are easy to show without editing code. Not a real location check.
   const [forceNotServiceable, setForceNotServiceable] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
 
-  useEffect(() => {
-    let cancelled = false;
-
-    async function load() {
+  // Loads the whole feed. `silent` (pull-to-refresh) keeps the current content on
+  // screen instead of dropping back to the skeleton.
+  const load = useCallback(
+    async (silent = false, isCancelled: () => boolean = () => false) => {
       try {
-        setStatus('checking');
+        if (!silent) setStatus('checking');
         const serviceability = await checkServiceability(forceNotServiceable);
-        if (cancelled) return;
+        if (isCancelled()) return;
 
         if (!serviceability.data.isServiceable) {
           setNotServiceableMessage(serviceability.data.message);
@@ -47,7 +48,7 @@ export function useHomeFeed() {
           return;
         }
 
-        setStatus('loading');
+        if (!silent) setStatus('loading');
 
         const feedConfig = await getFeedConfig();
         const sortedCuratedConfigs = sortCuratedConfigsByRank(feedConfig);
@@ -60,7 +61,7 @@ export function useHomeFeed() {
             getPastOrders(),
             getPaginatedRestaurantFeed(),
           ]);
-        if (cancelled) return;
+        if (isCancelled()) return;
 
         setViewModel(
           mapHomeViewModel({
@@ -74,22 +75,42 @@ export function useHomeFeed() {
         );
         setStatus('ready');
       } catch {
-        if (!cancelled) setStatus('error');
+        if (!isCancelled() && !silent) setStatus('error');
       }
-    }
+    },
+    [forceNotServiceable],
+  );
 
-    load();
+  useEffect(() => {
+    let cancelled = false;
+    load(false, () => cancelled);
     return () => {
       cancelled = true;
     };
-  }, [forceNotServiceable]);
+  }, [load]);
+
+  const refresh = useCallback(async () => {
+    setRefreshing(true);
+    try {
+      await load(true);
+    } finally {
+      setRefreshing(false);
+    }
+  }, [load]);
 
   const toggleNotServiceableForDemo = useCallback(() => {
     if (__DEV__) setForceNotServiceable((prev) => !prev);
   }, []);
 
   return useMemo(
-    () => ({ status, notServiceableMessage, ...viewModel, toggleNotServiceableForDemo }),
-    [status, notServiceableMessage, viewModel, toggleNotServiceableForDemo],
+    () => ({
+      status,
+      notServiceableMessage,
+      refreshing,
+      refresh,
+      ...viewModel,
+      toggleNotServiceableForDemo,
+    }),
+    [status, notServiceableMessage, refreshing, refresh, viewModel, toggleNotServiceableForDemo],
   );
 }

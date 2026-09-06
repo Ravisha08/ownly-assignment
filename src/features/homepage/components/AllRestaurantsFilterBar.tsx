@@ -1,4 +1,5 @@
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import Animated, { useAnimatedStyle, type SharedValue } from 'react-native-reanimated';
 
 import { FontFamily } from '@/theme/typography';
 import { Spacing } from '@/utils/constants';
@@ -19,12 +20,47 @@ function Chip({ children }: { children: React.ReactNode }) {
   );
 }
 
+// Cross-fades the Google "★ 4+" rating between the free-scrolling state and the
+// stuck filter bar's "● Rating 4+" chip. `progress`: 0 = Google, 1 = stuck.
+function RatingChip({ progress }: { progress?: SharedValue<number> }) {
+  const googleStyle = useAnimatedStyle(() => ({ opacity: progress ? 1 - progress.value : 1 }));
+  const stuckStyle = useAnimatedStyle(() => ({ opacity: progress ? progress.value : 0 }));
+
+  // No progress (free-scrolling twin): render just the Google layout in flow.
+  if (!progress) {
+    return (
+      <Chip>
+        <View style={styles.ratingLayout}>
+          <Image source={googleIcon} style={styles.google} resizeMode="contain" />
+          <Image source={starIcon} style={styles.star} resizeMode="contain" />
+          <Text style={styles.rating}>4+</Text>
+        </View>
+      </Chip>
+    );
+  }
+
+  return (
+    <Chip>
+      {/* stuck layout drives the chip width; Google layout floats over it */}
+      <Animated.View style={[styles.ratingLayout, stuckStyle]}>
+        <View style={styles.ratingDot} />
+        <Text style={styles.label}>Rating 4+</Text>
+      </Animated.View>
+      <Animated.View style={[styles.ratingLayout, styles.ratingOverlay, googleStyle]}>
+        <Image source={googleIcon} style={styles.google} resizeMode="contain" />
+        <Image source={starIcon} style={styles.star} resizeMode="contain" />
+        <Text style={styles.rating}>4+</Text>
+      </Animated.View>
+    </Chip>
+  );
+}
+
 export function AllRestaurantsFilterBar({
   showHeading = true,
-  sticky = false,
+  progress,
 }: {
   showHeading?: boolean;
-  sticky?: boolean;
+  progress?: SharedValue<number>;
 }) {
   return (
     <View style={styles.wrap}>
@@ -38,20 +74,7 @@ export function AllRestaurantsFilterBar({
           <Text style={styles.label}>Sort by</Text>
           <Image source={chevronDown} style={styles.chevron} resizeMode="contain" />
         </Chip>
-        <Chip>
-          {sticky ? (
-            <>
-              <View style={styles.ratingDot} />
-              <Text style={styles.label}>Rating 4+</Text>
-            </>
-          ) : (
-            <>
-              <Image source={googleIcon} style={styles.google} resizeMode="contain" />
-              <Image source={starIcon} style={styles.star} resizeMode="contain" />
-              <Text style={styles.rating}>4+</Text>
-            </>
-          )}
-        </Chip>
+        <RatingChip progress={progress} />
         <Chip>
           <Text style={styles.label}>Under 30 mins</Text>
         </Chip>
@@ -90,6 +113,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: Spacing.xs,
+  },
+  ratingLayout: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.xs,
+  },
+  ratingOverlay: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    bottom: 0,
   },
   label: {
     fontFamily: FontFamily.regular,

@@ -1,15 +1,19 @@
 import { Image } from 'expo-image';
+import { memo } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { FontFamily } from '@/theme/typography';
 
+import { titleCase } from '@/utils/text';
 import type { RestaurantEntity } from '@/types/fixtures';
 
 const starIcon = require('@/assets/images/star.png');
 const boltIcon = require('@/assets/images/bolt.png');
 const queenIcon = require('@/assets/images/chess_queen.png');
+const lowestPriceIcon = require('@/assets/images/lowest_price.png');
+const gemIcon = require('@/assets/images/diamond_shine.png');
 
 const IMAGE_SIZE = 144;
-const CARD_WIDTH = IMAGE_SIZE + 24;
+export const CARD_WIDTH = IMAGE_SIZE + 24;
 
 // Decorative badge shown over the image — mirrors RestaurantCard's fallback, since the
 // fixture's only real trustMarker is "Lowest Price".
@@ -21,19 +25,36 @@ function pickBadge(entityId: string) {
   return DECORATIVE_BADGES[hash % DECORATIVE_BADGES.length];
 }
 
-export function BestRatedCard({ item }: { item: RestaurantEntity }) {
+export const BestRatedCard = memo(function BestRatedCard({ item }: { item: RestaurantEntity }) {
   const rating = item.platformRating;
   const badge = item.trustMarkers?.[0]?.name ?? pickBadge(item.entityId);
-  const cuisine = item.knownFor?.filter(Boolean).join(', ');
+  const isLowestPrice = badge === 'Lowest Price';
+  const isHiddenGem = badge === 'Hidden Gem';
+  const cuisine = item.knownFor?.filter(Boolean).map(titleCase).join(', ');
 
   return (
     <Pressable style={({ pressed }) => [styles.card, pressed && styles.pressed]}>
       <View style={styles.imageWrap}>
         <Image source={{ uri: item.imageUrl }} style={styles.image} contentFit="cover" transition={200} />
         {badge ? (
-          <View style={styles.badge}>
-            <Image source={queenIcon} style={styles.badgeIcon} contentFit="contain" />
-            <Text style={styles.badgeText} numberOfLines={1}>
+          <View
+            style={[
+              styles.badge,
+              isLowestPrice && styles.badgeLowestPrice,
+              isHiddenGem && styles.badgeHiddenGem,
+            ]}>
+            <Image
+              source={isLowestPrice ? lowestPriceIcon : isHiddenGem ? gemIcon : queenIcon}
+              style={styles.badgeIcon}
+              contentFit="contain"
+            />
+            <Text
+              style={[
+                styles.badgeText,
+                isLowestPrice && styles.badgeTextLowestPrice,
+                isHiddenGem && styles.badgeTextHiddenGem,
+              ]}
+              numberOfLines={1}>
               {badge}
             </Text>
           </View>
@@ -69,22 +90,16 @@ export function BestRatedCard({ item }: { item: RestaurantEntity }) {
       ) : null}
     </Pressable>
   );
-}
+});
 
 const styles = StyleSheet.create({
   card: {
     width: CARD_WIDTH,
     backgroundColor: '#FFFFFF',
     borderRadius: 16,
-    borderWidth: 1,
-    borderColor: '#F9F9F9',
+    boxShadow: '0px 1px 4px 0px rgba(17, 12, 46, 0.12)',
     paddingVertical: 8,
     paddingHorizontal: 12,
-    shadowColor: '#DDDDDD',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 2,
   },
   pressed: {
     opacity: 0.85,
@@ -115,6 +130,12 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#FFFFFF',
   },
+  badgeLowestPrice: {
+    backgroundColor: '#CDEBB0',
+  },
+  badgeHiddenGem: {
+    backgroundColor: '#E3F6FF',
+  },
   badgeIcon: {
     width: 12,
     height: 12,
@@ -123,6 +144,12 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontFamily: FontFamily.bold,
     color: '#ED7756',
+  },
+  badgeTextLowestPrice: {
+    color: '#2F7A2A',
+  },
+  badgeTextHiddenGem: {
+    color: '#006DFF',
   },
   name: {
     fontSize: 14,

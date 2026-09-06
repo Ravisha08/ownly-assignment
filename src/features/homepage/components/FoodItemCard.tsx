@@ -1,4 +1,5 @@
 import { Image } from 'expo-image';
+import { memo } from 'react';
 import { Dimensions, Image as RNImage, Pressable, StyleSheet, Text, View } from 'react-native';
 import { FontFamily } from '@/theme/typography';
 
@@ -12,7 +13,7 @@ const IMAGE_SIZE = Math.round(
 );
 export const CARD_WIDTH = IMAGE_SIZE;
 
-export function FoodItemCard({ item }: { item: FoodItem }) {
+export const FoodItemCard = memo(function FoodItemCard({ item }: { item: FoodItem }) {
   const newPrice = item.displayPrice ?? item.price;
   const oldPrice =
     item.price > newPrice ? item.price : Math.round(newPrice / 0.95);
@@ -58,13 +59,15 @@ export function FoodItemCard({ item }: { item: FoodItem }) {
       </View>
 
       <View style={styles.ratingRow}>
-        <RNImage
-          source={require('@/assets/images/star.png')}
-          style={styles.starIcon}
-          resizeMode="contain"
-        />
         {rating != null ? (
-          <Text style={styles.rating}>{rating.toFixed(1)}</Text>
+          <>
+            <RNImage
+              source={require('@/assets/images/star.png')}
+              style={styles.starIcon}
+              resizeMode="contain"
+            />
+            <Text style={styles.rating}>{rating.toFixed(1)}</Text>
+          </>
         ) : null}
         <RNImage
           source={require('@/assets/images/bolt.png')}
@@ -80,7 +83,7 @@ export function FoodItemCard({ item }: { item: FoodItem }) {
       </View>
     </Pressable>
   );
-}
+});
 
 const styles = StyleSheet.create({
   card: {
@@ -128,12 +131,15 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.medium,
     fontSize: 14,
     lineHeight: 18,
+    // Always reserve two lines so the price/rating rows line up across cards,
+    // regardless of how long each item name is.
+    minHeight: 36,
     color: '#333333',
   },
   priceRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    gap: 4,
     marginTop: 8,
   },
   newPriceBox: {
@@ -145,6 +151,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     borderColor: '#FFFFFF',
+    borderBottomWidth: 2,
     borderBottomColor: '#FF297D',
   },
   newPrice: {

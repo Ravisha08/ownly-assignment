@@ -19,7 +19,7 @@ export function CuratedRestaurantRail({ title, items }: CuratedRestaurantRailPro
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.list}
-        decelerationRate="fast">
+        decelerationRate="normal">
         {items.map((item) => (
           <BestRatedCard key={item.entityId} item={item} />
         ))}
@@ -41,6 +41,8 @@ const styles = StyleSheet.create({
   },
   list: {
     paddingHorizontal: Spacing.lg,
+    paddingTop: Spacing.sm,
+    paddingBottom: Spacing.lg,
     gap: Spacing.md,
   },
 });
