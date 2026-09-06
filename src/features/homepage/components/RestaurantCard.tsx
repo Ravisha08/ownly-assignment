@@ -106,7 +106,11 @@ export const RestaurantCard = memo(function RestaurantCard({ item, variant = 'fu
           </Text>
           <View style={styles.locationCol}>
             <Text style={styles.distance}>{item.distanceInKM} km</Text>
-            {item.address?.area ? <Text style={styles.area}>{item.address.area}</Text> : null}
+            {item.address?.area ? (
+              <Text style={styles.area} numberOfLines={1} ellipsizeMode="tail">
+                {item.address.area}
+              </Text>
+            ) : null}
           </View>
         </View>
         <View style={styles.metaRow}>
@@ -257,6 +261,8 @@ const styles = StyleSheet.create({
     right: 0,
     alignItems: 'flex-end',
     gap: 4,
+    minWidth: 72,
+    maxWidth: 120,
   },
   distance: {
     fontSize: 12,
@@ -267,6 +273,8 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: FontFamily.semiBold,
     color: '#999999',
+    textAlign: 'right',
+    alignSelf: 'stretch',
   },
   metaRow: {
     flexDirection: 'row',

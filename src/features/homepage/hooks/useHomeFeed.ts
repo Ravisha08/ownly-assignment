@@ -99,7 +99,11 @@ export function useHomeFeed() {
   }, [load]);
 
   const toggleNotServiceableForDemo = useCallback(() => {
-    if (__DEV__) setForceNotServiceable((prev) => !prev);
+    setForceNotServiceable((prev) => !prev);
+  }, []);
+
+  const setNotServiceable = useCallback((value: boolean) => {
+    setForceNotServiceable(value);
   }, []);
 
   return useMemo(
@@ -109,8 +113,19 @@ export function useHomeFeed() {
       refreshing,
       refresh,
       ...viewModel,
+      isNotServiceable: forceNotServiceable,
+      setNotServiceable,
       toggleNotServiceableForDemo,
     }),
-    [status, notServiceableMessage, refreshing, refresh, viewModel, toggleNotServiceableForDemo],
+    [
+      status,
+      notServiceableMessage,
+      refreshing,
+      refresh,
+      viewModel,
+      forceNotServiceable,
+      setNotServiceable,
+      toggleNotServiceableForDemo,
+    ],
   );
 }

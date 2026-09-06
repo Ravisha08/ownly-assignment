@@ -1,6 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { useCallback, useRef, useState } from 'react';
-import { LayoutChangeEvent, Platform, RefreshControl, StyleSheet, Text, View } from 'react-native';
+import { useCallback, useMemo, useRef, useState } from 'react';
+import {
+  LayoutChangeEvent,
+  Platform,
+  Pressable,
+  RefreshControl,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Animated, {
   runOnJS,
@@ -15,17 +24,37 @@ import { BackToTopButton } from '@/features/homepage/components/BackToTopButton'
 import { BestRatedRail } from '@/features/homepage/components/BestRatedRail';
 import { CuratedRestaurantRail } from '@/features/homepage/components/CuratedRestaurantRail';
 import { DiscoverBarContent } from '@/features/homepage/components/DiscoverBarContent';
+import { EmptyRestaurants } from '@/features/homepage/components/EmptyRestaurants';
 import { HomeSkeleton } from '@/features/homepage/components/HomeSkeleton';
 import { MealForOneRail } from '@/features/homepage/components/MealForOneRail';
 import { NotServiceableView } from '@/features/homepage/components/NotServiceableView';
 import { ReorderRail } from '@/features/homepage/components/ReorderRail';
 import { RestaurantCard } from '@/features/homepage/components/RestaurantCard';
+import { Shimmer } from '@/features/homepage/components/Shimmer';
+import { ServiceabilityMenu } from '@/features/homepage/components/ServiceabilityMenu';
+import { SortMenu } from '@/features/homepage/components/SortMenu';
 import { TopHero } from '@/features/homepage/components/TopHero';
 import { useHomeFeed } from '@/features/homepage/hooks/useHomeFeed';
+import { isVegCuisine, isVegFoodItem, isVegRestaurant } from '@/features/homepage/services/vegFilter';
+import { useRestaurantFilters } from '@/features/homepage/hooks/useRestaurantFilters';
 import { Colors, Spacing } from '@/utils/constants';
 import type { RestaurantEntity } from '@/types/fixtures';
 
 const BACK_TO_TOP_THRESHOLD = 900;
+
+// Downward-only drop shadow for the stuck sticky bars. Android `elevation`
+// bleeds a shadow above the bar too, so we paint the shadow ourselves as a
+// short gradient sitting just below the bar's bottom edge.
+function StuckShadow() {
+  if (Platform.OS !== 'android') return null;
+  return (
+    <LinearGradient
+      pointerEvents="none"
+      colors={['rgba(0,0,0,0.16)', 'rgba(0,0,0,0)']}
+      style={styles.stuckShadowGradient}
+    />
+  );
+}
 
 function renderRestaurant({ item }: { item: RestaurantEntity }) {
   return (
@@ -40,18 +69,79 @@ export function HomeScreen() {
   const insets = useSafeAreaInsets();
   const listRef = useRef<any>(null);
   const scrollY = useSharedValue(0);
+  // Shared horizontal offset for the craving rail so the in-list twin and the
+  // stuck overlay twin show the same scroll position when control passes over.
+  const cravingScrollX = useSharedValue(0);
   const [heroHeight, setHeroHeight] = useState<number | null>(null);
+  const [bannerHeight, setBannerHeight] = useState(0);
   // All measured relative to the top of the scroll content (the ListHeader
   // starts at content y = 0, so onLayout y values there are absolute offsets).
   const [cravingY, setCravingY] = useState(Number.MAX_SAFE_INTEGER);
   const [cravingHeight, setCravingHeight] = useState(0);
   const [filterY, setFilterY] = useState(Number.MAX_SAFE_INTEGER);
   const [showBackToTop, setShowBackToTop] = useState(false);
-  const [isVeg, setIsVeg] = useState(true);
+  const [isVeg, setIsVeg] = useState(false);
+  // Drives the switch knob — flips instantly so the toggle animates while the
+  // skeleton loads; `isVeg` (the actual filter) catches up when loading ends.
+  const [vegVisual, setVegVisual] = useState(false);
+  const [vegSwitching, setVegSwitching] = useState(false);
+  const vegTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const handleToggleVeg = useCallback((next: boolean) => {
+    if (vegTimer.current) clearTimeout(vegTimer.current);
+    listRef.current?.scrollToOffset({ offset: 0, animated: false });
+    // Rail twins (in-list + stuck overlay) both read this; the list remounts on
+    // the veg flip so reset it here or the stuck overlay keeps the stale offset.
+    cravingScrollX.value = 0;
+    setVegVisual(next);
+    setVegSwitching(true);
+    vegTimer.current = setTimeout(() => {
+      setIsVeg(next);
+      setVegSwitching(false);
+    }, 800);
+  }, [cravingScrollX]);
   const [lowestPriceMode, setLowestPriceMode] = useState(false);
+  const filters = useRestaurantFilters();
+  const [sortMenuOpen, setSortMenuOpen] = useState(false);
+  const toggleSortMenu = useCallback(() => setSortMenuOpen((prev) => !prev), []);
+  const closeSortMenu = useCallback(() => setSortMenuOpen(false), []);
+  const [locationMenuOpen, setLocationMenuOpen] = useState(false);
+  const toggleLocationMenu = useCallback(() => setLocationMenuOpen((prev) => !prev), []);
+  const closeLocationMenu = useCallback(() => setLocationMenuOpen(false), []);
+  const filteredRestaurants = useMemo(() => {
+    const base = isVeg ? feed.mainListItems.filter(isVegRestaurant) : feed.mainListItems;
+    return filters.apply(base);
+  }, [filters, feed.mainListItems, isVeg]);
+
+  // Veg mode also trims every rail above the main list.
+  const reorderItems = useMemo(
+    () => (isVeg ? feed.reorderItems.filter(isVegRestaurant) : feed.reorderItems),
+    [feed.reorderItems, isVeg],
+  );
+  const cravingItems = useMemo(
+    () => (isVeg ? feed.cravingItems.filter(isVegCuisine) : feed.cravingItems),
+    [feed.cravingItems, isVeg],
+  );
+  const mealForOneItems = useMemo(
+    () => (isVeg ? feed.mealForOneItems.filter(isVegFoodItem) : feed.mealForOneItems),
+    [feed.mealForOneItems, isVeg],
+  );
+  const curatedSections = useMemo(
+    () =>
+      isVeg
+        ? feed.curatedSections.map((section) => ({
+            ...section,
+            items: section.items.filter(isVegRestaurant),
+          }))
+        : feed.curatedSections,
+    [feed.curatedSections, isVeg],
+  );
 
   const handleHeroLayout = useCallback((event: LayoutChangeEvent) => {
     setHeroHeight(event.nativeEvent.layout.height);
+  }, []);
+
+  const handleBannerLayout = useCallback((event: LayoutChangeEvent) => {
+    setBannerHeight(event.nativeEvent.layout.height);
   }, []);
 
   const handleCravingLayout = useCallback((event: LayoutChangeEvent) => {
@@ -114,9 +204,6 @@ export function HomeScreen() {
   const [filterStuck, setFilterStuck] = useState(false);
   const cravingStuckSV = useSharedValue(false);
   const filterStuckSV = useSharedValue(false);
-  // Shared horizontal offset for the craving rail so the in-list twin and the
-  // stuck overlay twin show the same scroll position when control passes over.
-  const cravingScrollX = useSharedValue(0);
   const cravingInListActive = useDerivedValue(() => !cravingStuckSV.value);
 
   const cravingOverlayStyle = useAnimatedStyle(() => {
@@ -151,15 +238,51 @@ export function HomeScreen() {
     };
   });
 
+  // Sort dropdown floats 46px below the filter bar's "Sort by" chip, tracking the
+  // bar whether it's free-scrolling or pinned (same transform as the overlay bar).
+  const SORT_MENU_ANCHOR = 46;
+  const sortMenuStyle = useAnimatedStyle(() => ({
+    transform: [
+      { translateY: Math.max(cravingHeight, filterY - scrollY.value) + SORT_MENU_ANCHOR },
+    ],
+  }));
+
   if (feed.status === 'not-serviceable') {
-    return <NotServiceableView message={feed.notServiceableMessage} onRetry={feed.toggleNotServiceableForDemo} />;
+    return (
+      <View style={[styles.screen, { paddingTop: insets.top }]}>
+        <View style={[styles.notchFill, { height: insets.top }]} />
+        <StatusBar style="light" />
+        <TopHero
+          isVeg={false}
+          onToggleVeg={() => {}}
+          lowestPriceMode={false}
+          onToggleLowestPriceMode={() => {}}
+          onPressLocation={toggleLocationMenu}
+          compact
+        />
+        <NotServiceableView message={feed.notServiceableMessage} embedded />
+
+        {locationMenuOpen ? (
+          <>
+            <Pressable style={styles.sortBackdrop} onPress={closeLocationMenu} />
+            <View style={[styles.locationMenuOverlay, { top: insets.top + 52 }]}>
+              <ServiceabilityMenu
+                notServiceable={feed.isNotServiceable}
+                onSelect={feed.setNotServiceable}
+                onClose={closeLocationMenu}
+              />
+            </View>
+          </>
+        ) : null}
+      </View>
+    );
   }
 
   if (feed.status === 'checking' || feed.status === 'loading') {
     return (
       <View style={[styles.screen, { paddingTop: insets.top }]}>
-        <View style={[styles.notchFill, { height: insets.top }]} />
-        <StatusBar style="light" />
+        <View style={[styles.notchFill, styles.notchFillWhite, { height: insets.top }]} />
+        <StatusBar style="dark" />
         <HomeSkeleton />
       </View>
     );
@@ -184,7 +307,8 @@ export function HomeScreen() {
       <StatusBar style={statusBarStyle} />
       <Animated.FlatList
         ref={listRef}
-        data={feed.mainListItems}
+        key={isVeg ? 'veg' : 'all'}
+        data={filteredRestaurants}
         removeClippedSubviews={false}
         refreshControl={
           <RefreshControl
@@ -198,40 +322,46 @@ export function HomeScreen() {
         keyExtractor={(item) => item.entityId}
         renderItem={renderRestaurant}
         onScroll={scrollHandler}
+        onScrollBeginDrag={() => {
+          closeSortMenu();
+          closeLocationMenu();
+        }}
         scrollEventThrottle={16}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.listContent}
         ListHeaderComponent={
           <View>
-            {/* iOS only: sits above the content origin so it only shows in the
-                pull-down bounce — a pink overscroll above the hero, matching it. */}
-            {Platform.OS === 'ios' ? (
-              <View style={styles.pullDownFill} pointerEvents="none" />
-            ) : null}
+            {/* Sits above the content origin so it only shows during overscroll —
+                a pink fill above the hero, matching it. Needed on Android too:
+                the stretch-overscroll on fling-to-top otherwise reveals the
+                white screen background between the notch and the hero. */}
+            <View style={styles.pullDownFill} pointerEvents="none" />
             <View onLayout={handleHeroLayout}>
               <TopHero
                 banner={feed.banner}
-                isVeg={isVeg}
-                onToggleVeg={setIsVeg}
+                isVeg={vegVisual}
+                onToggleVeg={handleToggleVeg}
                 lowestPriceMode={lowestPriceMode}
                 onToggleLowestPriceMode={setLowestPriceMode}
+                onPressLocation={toggleLocationMenu}
                 onLongPressLocation={feed.toggleNotServiceableForDemo}
+                onBannerLayout={handleBannerLayout}
               />
             </View>
-            <ReorderRail items={feed.reorderItems} />
+            <ReorderRail items={reorderItems} />
             <View style={styles.cravingTitleWrap}>
               <Text style={styles.cravingTitle}>What are you craving today?</Text>
             </View>
             <View style={styles.stickyRow} onLayout={handleCravingLayout}>
               <DiscoverBarContent
-                items={feed.cravingItems}
+                items={cravingItems}
                 showTitle={false}
                 scrollX={cravingScrollX}
                 active={cravingInListActive}
               />
             </View>
-            <MealForOneRail title={feed.mealForOneTitle} items={feed.mealForOneItems} />
-            {feed.curatedSections.map((section) =>
+            <MealForOneRail title={feed.mealForOneTitle} items={mealForOneItems} />
+            {curatedSections.map((section) =>
               section.title === 'Best rated restos near you' ? (
                 <BestRatedRail key={section.id} items={section.items} />
               ) : (
@@ -244,13 +374,35 @@ export function HomeScreen() {
                   <Text style={styles.allRestaurantsHeading}>All restaurants</Text>
                 </View>
                 <View style={[styles.stickyRow, styles.filterBarInner]} onLayout={handleFilterLayout}>
-                  <AllRestaurantsFilterBar showHeading={false} />
+                  <AllRestaurantsFilterBar
+                    showHeading={false}
+                    filters={filters}
+                    sortMenuOpen={sortMenuOpen}
+                    onToggleSortMenu={toggleSortMenu}
+                  />
                 </View>
               </>
             ) : null}
           </View>
         }
+        ListEmptyComponent={
+          hasRestaurants ? <EmptyRestaurants onReset={filters.reset} /> : null
+        }
       />
+
+      {vegSwitching ? (
+        <View
+          style={[
+            styles.vegSkeleton,
+            { top: insets.top + (heroHeight ?? 0) - bannerHeight },
+          ]}
+        >
+          {bannerHeight > 0 ? (
+            <Shimmer width="100%" height={bannerHeight} radius={0} />
+          ) : null}
+          <HomeSkeleton showHero={false} />
+        </View>
+      ) : null}
 
       <Animated.View
         pointerEvents={cravingStuck ? 'auto' : 'none'}
@@ -263,11 +415,12 @@ export function HomeScreen() {
         ]}
       >
         <DiscoverBarContent
-          items={feed.cravingItems}
+          items={cravingItems}
           showTitle={false}
           scrollX={cravingScrollX}
           active={cravingStuckSV}
         />
+        {cravingStuck && !filterStuck ? <StuckShadow /> : null}
       </Animated.View>
 
       {hasRestaurants ? (
@@ -277,13 +430,44 @@ export function HomeScreen() {
             styles.overlay,
             styles.stickyRow,
             styles.filterBarInner,
-            { top: insets.top },
+            { top: insets.top, zIndex: 6 },
             filterStuck && styles.stuckShadow,
             filterOverlayStyle,
           ]}
         >
-          <AllRestaurantsFilterBar showHeading={false} progress={filterProgress} />
+          <AllRestaurantsFilterBar
+            showHeading={false}
+            progress={filterProgress}
+            filters={filters}
+            sortMenuOpen={sortMenuOpen}
+            onToggleSortMenu={toggleSortMenu}
+          />
+          {filterStuck ? <StuckShadow /> : null}
         </Animated.View>
+      ) : null}
+
+      {hasRestaurants && sortMenuOpen ? (
+        <>
+          <Pressable style={styles.sortBackdrop} onPress={closeSortMenu} />
+          <Animated.View
+            style={[styles.sortMenuOverlay, { top: insets.top }, sortMenuStyle]}
+          >
+            <SortMenu filters={filters} onClose={closeSortMenu} />
+          </Animated.View>
+        </>
+      ) : null}
+
+      {locationMenuOpen ? (
+        <>
+          <Pressable style={styles.sortBackdrop} onPress={closeLocationMenu} />
+          <View style={[styles.locationMenuOverlay, { top: insets.top + 52 }]}>
+            <ServiceabilityMenu
+              notServiceable={feed.isNotServiceable}
+              onSelect={feed.setNotServiceable}
+              onClose={closeLocationMenu}
+            />
+          </View>
+        </>
       ) : null}
 
       <BackToTopButton visible={showBackToTop} onPress={scrollToTop} />
@@ -317,6 +501,14 @@ const styles = StyleSheet.create({
     height: 600,
     backgroundColor: '#FF4088',
   },
+  vegSkeleton: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 20,
+    backgroundColor: Colors.background,
+  },
   mainCardWrap: {
     paddingHorizontal: Spacing.lg,
     marginTop: Spacing.lg,
@@ -345,13 +537,25 @@ const styles = StyleSheet.create({
     right: 0,
   },
   stuckShadow: {
-    shadowColor: '#000',
-    // Offset > radius so the blur only spills below the bar, never above/beside it.
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 6,
     zIndex: 5,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        // Offset > radius so the blur only spills below the bar, never above/beside it.
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.1,
+        shadowRadius: 3,
+      },
+      // Android `elevation` casts on all four edges (visible line above the
+      // bar), so we draw a downward-only gradient via <StuckShadow /> instead.
+    }),
+  },
+  stuckShadowGradient: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: -8,
+    height: 8,
   },
   allRestaurantsHeadingWrap: {
     marginTop: Spacing.xxxl,
@@ -363,6 +567,24 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#333333',
     paddingHorizontal: Spacing.lg,
+  },
+  sortBackdrop: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 40,
+  },
+  sortMenuOverlay: {
+    position: 'absolute',
+    left: Spacing.lg,
+    zIndex: 41,
+  },
+  locationMenuOverlay: {
+    position: 'absolute',
+    left: Spacing.lg,
+    zIndex: 41,
   },
   errorText: {
     color: Colors.textSecondary,

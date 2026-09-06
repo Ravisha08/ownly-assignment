@@ -1,7 +1,7 @@
 import { Image } from 'expo-image';
 import { FontFamily } from '@/theme/typography';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { Colors, Radius, Spacing } from '@/utils/constants';
 import { LowestPriceModeToggle } from '@/features/homepage/components/LowestPriceModeToggle';
@@ -15,6 +15,10 @@ interface TopHeroProps {
   lowestPriceMode: boolean;
   onToggleLowestPriceMode: (value: boolean) => void;
   onLongPressLocation?: () => void;
+  onPressLocation?: () => void;
+  onBannerLayout?: (event: LayoutChangeEvent) => void;
+  /** Location row only — used on the not-serviceable screen. */
+  compact?: boolean;
 }
 
 export function TopHero({
@@ -24,9 +28,12 @@ export function TopHero({
   lowestPriceMode,
   onToggleLowestPriceMode,
   onLongPressLocation,
+  onPressLocation,
+  onBannerLayout,
+  compact = false,
 }: TopHeroProps) {
   return (
-    <View style={[styles.wrap, banner ? styles.wrapWithBanner : null]}>
+    <View style={[styles.wrap, !compact && banner ? styles.wrapWithBanner : null]}>
       <LinearGradient
         colors={['#FF4088', '#FF297D']}
         start={{ x: 0, y: 0 }}
@@ -35,7 +42,11 @@ export function TopHero({
         style={StyleSheet.absoluteFill}
       />
       <View style={styles.topRow}>
-        <Pressable style={styles.locationBlock} onLongPress={onLongPressLocation}>
+        <Pressable
+          style={styles.locationBlock}
+          onPress={onPressLocation}
+          onLongPress={onLongPressLocation}
+        >
           <View style={styles.locationTitleRow}>
             <Text style={styles.locationTitle}>HSR Layout</Text>
             <View style={styles.chevron}>
@@ -46,10 +57,12 @@ export function TopHero({
             3rd main road, 4th cross road
           </Text>
         </Pressable>
-        <View style={styles.vegBlock}>
-          <Text style={styles.vegLabel}>VEG</Text>
-          <VegToggle value={isVeg} onValueChange={onToggleVeg} />
-        </View>
+        {!compact ? (
+          <View style={styles.vegBlock}>
+            <Text style={styles.vegLabel}>VEG</Text>
+            <VegToggle value={isVeg} onValueChange={onToggleVeg} />
+          </View>
+        ) : null}
         <View style={styles.avatar}>
           <Image
             source={require('@/assets/images/profile.png')}
@@ -59,6 +72,7 @@ export function TopHero({
         </View>
       </View>
 
+      {compact ? null : (
       <View style={styles.searchRow}>
         <View style={styles.searchBox}>
           <Image
@@ -73,9 +87,10 @@ export function TopHero({
           onValueChange={onToggleLowestPriceMode}
         />
       </View>
+      )}
 
-      {banner ? (
-        <View style={styles.bannerBox}>
+      {!compact && banner ? (
+        <View style={styles.bannerBox} onLayout={onBannerLayout}>
           <Image
             source={{ uri: banner.imageUrl }}
             style={styles.bannerImage}
