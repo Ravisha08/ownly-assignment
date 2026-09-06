@@ -32,6 +32,20 @@ Then:
 
 Built on **Expo SDK 57** (React Native 0.86, Reanimated 4).
 
+### Troubleshooting
+
+**iOS Expo Go says "You need to be signed in to Expo Go and Expo CLI":**
+this happens when the dev server is reached over a tunnel instead of the local network.
+Fix it either way:
+
+- **Preferred:** keep phone and computer on the **same Wi-Fi** and start with plain
+  `npx expo start` (LAN mode). No account needed. If it still uses a tunnel, press `s`
+  in the terminal to switch back to Expo Go / LAN, or run `npx expo start --lan`.
+- **If they must be on different networks:** run `npx expo login` on the computer (free
+  account), then sign into the **same account** inside the Expo Go app on the phone.
+
+Android Expo Go does not have this restriction.
+
 ## Data flow
 
 `src/data/homepageRepository.ts` loads the fixture file and exposes each API key.
