@@ -1,29 +1,41 @@
 import { Image } from 'expo-image';
 import { FontFamily } from '@/theme/typography';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Platform, Pressable, StyleSheet, Switch, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { Colors, FontSize, Radius, Spacing } from '@/utils/constants';
+import { Colors, Radius, Spacing } from '@/utils/constants';
+import { LowestPriceModeToggle } from '@/features/homepage/components/LowestPriceModeToggle';
+import { VegToggle } from '@/features/homepage/components/VegToggle';
 import type { TopBannerItem } from '@/types/fixtures';
 
 interface TopHeroProps {
   banner?: TopBannerItem;
   isVeg: boolean;
   onToggleVeg: (value: boolean) => void;
+  lowestPriceMode: boolean;
+  onToggleLowestPriceMode: (value: boolean) => void;
   onLongPressLocation?: () => void;
 }
 
-export function TopHero({ banner, isVeg, onToggleVeg, onLongPressLocation }: TopHeroProps) {
+export function TopHero({
+  banner,
+  isVeg,
+  onToggleVeg,
+  lowestPriceMode,
+  onToggleLowestPriceMode,
+  onLongPressLocation,
+}: TopHeroProps) {
   return (
-    <View style={styles.wrap}>
+    <View style={[styles.wrap, banner ? styles.wrapWithBanner : null]}>
       <LinearGradient
-        colors={['#FF297D33', '#FF297D80']}
+        colors={['#FF4088', '#FF297D']}
         start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
+        end={{ x: 0, y: 1 }}
+        locations={[0, 0.5]}
         style={StyleSheet.absoluteFill}
       />
-      <Pressable style={styles.topRow} onLongPress={onLongPressLocation}>
-        <View style={styles.locationBlock}>
+      <View style={styles.topRow}>
+        <Pressable style={styles.locationBlock} onLongPress={onLongPressLocation}>
           <View style={styles.locationTitleRow}>
             <Text style={styles.locationTitle}>HSR Layout</Text>
             <View style={styles.chevron}>
@@ -33,23 +45,15 @@ export function TopHero({ banner, isVeg, onToggleVeg, onLongPressLocation }: Top
           <Text style={styles.locationSubtitle} numberOfLines={1}>
             3rd main road, 4th cross road
           </Text>
-        </View>
+        </Pressable>
         <View style={styles.vegBlock}>
           <Text style={styles.vegLabel}>VEG</Text>
-          <View style={styles.vegSwitchClip}>
-            <Switch
-              value={isVeg}
-              onValueChange={onToggleVeg}
-              trackColor={{ true: '#7CD98A', false: '#E3E0E6' }}
-              thumbColor="#fff"
-              style={styles.vegSwitch}
-            />
-          </View>
+          <VegToggle value={isVeg} onValueChange={onToggleVeg} />
         </View>
         <View style={styles.avatar}>
           <Text style={styles.avatarEmoji}>🙂</Text>
         </View>
-      </Pressable>
+      </View>
 
       <View style={styles.searchRow}>
         <View style={styles.searchBox}>
@@ -60,15 +64,10 @@ export function TopHero({ banner, isVeg, onToggleVeg, onLongPressLocation }: Top
           />
           <Text style={styles.searchPlaceholder}>Search</Text>
         </View>
-        <View style={styles.priceModeBox}>
-          <Text style={styles.priceModeText}>LOWEST PRICE MODE</Text>
-          <Switch
-            value={false}
-            trackColor={{ true: Colors.brandDark, false: '#E3E0E6' }}
-            thumbColor="#fff"
-            style={styles.priceModeSwitch}
-          />
-        </View>
+        <LowestPriceModeToggle
+          value={lowestPriceMode}
+          onValueChange={onToggleLowestPriceMode}
+        />
       </View>
 
       {banner ? (
@@ -76,7 +75,7 @@ export function TopHero({ banner, isVeg, onToggleVeg, onLongPressLocation }: Top
           <Image
             source={{ uri: banner.imageUrl }}
             style={styles.bannerImage}
-            contentFit="cover"
+            contentFit="contain"
             transition={200}
           />
         </View>
@@ -95,6 +94,11 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: Radius.xl,
     borderBottomRightRadius: Radius.xl,
     overflow: 'hidden',
+  },
+  wrapWithBanner: {
+    paddingBottom: 0,
+    borderBottomLeftRadius: 0,
+    borderBottomRightRadius: 0,
   },
   topRow: {
     flexDirection: 'row',
@@ -137,7 +141,7 @@ const styles = StyleSheet.create({
   },
   vegBlock: {
     alignItems: 'center',
-    gap: 0,
+    gap: 4,
   },
   vegLabel: {
     color: '#333333',
@@ -145,18 +149,6 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.bold,
     letterSpacing: 0.5,
   },
-  vegSwitchClip: {
-    width: 32,
-    height: 16,
-    overflow: 'hidden',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  vegSwitch: Platform.select({
-    ios: { transform: [{ scaleX: 32 / 51 }, { scaleY: 16 / 31 }] },
-    android: { transform: [{ scaleX: 32 / 46 }, { scaleY: 16 / 28 }] },
-    default: { transform: [{ scaleX: 32 / 51 }, { scaleY: 16 / 31 }] },
-  }),
   avatar: {
     width: AVATAR_SIZE,
     height: AVATAR_SIZE,
@@ -177,7 +169,7 @@ const styles = StyleSheet.create({
     marginTop: Spacing.lg,
   },
   searchBox: {
-    width: '65%',
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     gap: Spacing.sm,
@@ -195,30 +187,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: FontFamily.regular,
   },
-  priceModeBox: {
-    flexShrink: 1,
-    backgroundColor: '#fff',
-    borderRadius: Radius.pill,
-    height: 44,
-    paddingHorizontal: Spacing.md,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 4,
-  },
-  priceModeText: {
-    fontSize: 9,
-    fontFamily: FontFamily.bold,
-    color: Colors.text,
-    maxWidth: 46,
-  },
-  priceModeSwitch: {
-    transform: [{ scale: 0.8 }],
-  },
   bannerBox: {
     marginTop: Spacing.xl,
+    backgroundColor: Colors.background,
   },
   bannerImage: {
     width: '100%',
-    height: 180,
+    aspectRatio: 1560 / 772,
   },
 });

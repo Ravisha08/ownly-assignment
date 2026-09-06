@@ -27,7 +27,6 @@ import type { RestaurantEntity } from '@/types/fixtures';
 
 const BACK_TO_TOP_THRESHOLD = 900;
 const STICKY_FADE_DISTANCE = 32;
-const HERO_HEIGHT_ESTIMATE = 340;
 
 function renderRestaurant({ item }: { item: RestaurantEntity }) {
   return (
@@ -43,11 +42,22 @@ export function HomeScreen() {
   const listRef = useRef<any>(null);
   const scrollY = useSharedValue(0);
   const [discoverBarY, setDiscoverBarY] = useState<number | null>(null);
+  const [filterBarY, setFilterBarY] = useState<number | null>(null);
+  const [stickyCravingHeight, setStickyCravingHeight] = useState(0);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [isVeg, setIsVeg] = useState(true);
+  const [lowestPriceMode, setLowestPriceMode] = useState(false);
 
   const handleDiscoverBarLayout = useCallback((event: LayoutChangeEvent) => {
     setDiscoverBarY(event.nativeEvent.layout.y);
+  }, []);
+
+  const handleFilterBarLayout = useCallback((event: LayoutChangeEvent) => {
+    setFilterBarY(event.nativeEvent.layout.y);
+  }, []);
+
+  const handleStickyCravingLayout = useCallback((event: LayoutChangeEvent) => {
+    setStickyCravingHeight(event.nativeEvent.layout.height);
   }, []);
 
   const updateBackToTop = useCallback((y: number) => {
@@ -65,8 +75,12 @@ export function HomeScreen() {
   });
 
   const barStyle = useDerivedValue<'light' | 'dark'>(() =>
-    scrollY.value < HERO_HEIGHT_ESTIMATE ? 'light' : 'dark',
+    scrollY.value < 8 ? 'light' : 'dark',
   );
+
+  const notchFillStyle = useAnimatedStyle(() => ({
+    backgroundColor: scrollY.value > 4 ? Colors.background : '#FF4088',
+  }));
   const [statusBarStyle, setStatusBarStyle] = useState<'light' | 'dark'>('light');
   useDerivedValue(() => {
     runOnJS(setStatusBarStyle)(barStyle.value);
@@ -82,6 +96,21 @@ export function HomeScreen() {
     return {
       opacity: progress,
       transform: [{ translateY: (1 - progress) * -16 }],
+      pointerEvents: progress > 0 ? 'box-none' : 'none',
+    };
+  });
+
+  const filterThreshold =
+    filterBarY != null ? filterBarY - stickyCravingHeight : Number.MAX_SAFE_INTEGER;
+  const filterStickyStyle = useAnimatedStyle(() => {
+    const progress = Math.min(
+      Math.max((scrollY.value - (filterThreshold - STICKY_FADE_DISTANCE)) / STICKY_FADE_DISTANCE, 0),
+      1,
+    );
+    return {
+      opacity: progress,
+      transform: [{ translateY: (1 - progress) * -16 }],
+      pointerEvents: progress > 0 ? 'box-none' : 'none',
     };
   });
 
@@ -109,11 +138,12 @@ export function HomeScreen() {
 
   return (
     <View style={[styles.screen, { paddingTop: insets.top }]}>
-      <View style={[styles.notchFill, { height: insets.top }]} />
+      <Animated.View style={[styles.notchFill, { height: insets.top }, notchFillStyle]} />
       <StatusBar style={statusBarStyle} />
       <Animated.FlatList
         ref={listRef}
         data={feed.mainListItems}
+        removeClippedSubviews={false}
         keyExtractor={(item) => item.entityId}
         renderItem={renderRestaurant}
         onScroll={scrollHandler}
@@ -126,6 +156,8 @@ export function HomeScreen() {
               banner={feed.banner}
               isVeg={isVeg}
               onToggleVeg={setIsVeg}
+              lowestPriceMode={lowestPriceMode}
+              onToggleLowestPriceMode={setLowestPriceMode}
               onLongPressLocation={feed.toggleNotServiceableForDemo}
             />
             <ReorderRail items={feed.reorderItems} />
@@ -141,7 +173,7 @@ export function HomeScreen() {
               ),
             )}
             {feed.mainListItems.length > 0 ? (
-              <View style={styles.allRestaurantsHeader}>
+              <View style={styles.allRestaurantsHeader} onLayout={handleFilterBarLayout}>
                 <AllRestaurantsFilterBar />
               </View>
             ) : null}
@@ -149,8 +181,17 @@ export function HomeScreen() {
         }
       />
 
-      <Animated.View pointerEvents="box-none" style={[styles.stickyBar, stickyAnimatedStyle]}>
-        <DiscoverBarContent items={feed.cravingItems} />
+      <Animated.View
+        onLayout={handleStickyCravingLayout}
+        style={[styles.stickyBar, { top: insets.top }, stickyAnimatedStyle]}
+      >
+        <DiscoverBarContent items={feed.cravingItems} showTitle={false} />
+      </Animated.View>
+
+      <Animated.View
+        style={[styles.stickyFilterBar, { top: insets.top + stickyCravingHeight }, filterStickyStyle]}
+      >
+        <AllRestaurantsFilterBar showHeading={false} />
       </Animated.View>
 
       <BackToTopButton visible={showBackToTop} onPress={scrollToTop} />
@@ -188,6 +229,13 @@ const styles = StyleSheet.create({
     right: 0,
     backgroundColor: Colors.background,
     ...Shadow.card,
+  },
+  stickyFilterBar: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    backgroundColor: Colors.background,
+    paddingVertical: Spacing.md,
   },
   errorText: {
     color: Colors.textSecondary,

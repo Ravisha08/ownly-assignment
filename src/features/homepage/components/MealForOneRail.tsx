@@ -27,7 +27,7 @@ export function MealForOneRail({ items }: MealForOneRailProps) {
         />
         <Pressable hitSlop={8} onPress={() => {}} style={styles.seeAllPress}>
           <LinearGradient
-            colors={['#FFFFFF', '#F9F3EC']}
+            colors={['#FFFFFF', '#FFFFFF', '#F9F3EC']}
             locations={[0, 0.7, 1]}
             start={{ x: 0, y: 0.5 }}
             end={{ x: 1, y: 0.5 }}

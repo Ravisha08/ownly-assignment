@@ -19,10 +19,10 @@ function Chip({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function AllRestaurantsFilterBar() {
+export function AllRestaurantsFilterBar({ showHeading = true }: { showHeading?: boolean }) {
   return (
     <View style={styles.wrap}>
-      <Text style={styles.heading}>All restaurants</Text>
+      {showHeading ? <Text style={styles.heading}>All restaurants</Text> : null}
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}

@@ -5,10 +5,10 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Colors, Spacing } from '@/utils/constants';
 import type { CuratedListDetail } from '@/types/fixtures';
 
-export function CravingGrid({ items }: { items: CuratedListDetail[] }) {
+export function CravingGrid({ items, showTitle = true }: { items: CuratedListDetail[]; showTitle?: boolean }) {
   return (
     <View style={styles.wrap}>
-      <Text style={styles.title}>What are you craving today?</Text>
+      {showTitle ? <Text style={styles.title}>What are you craving today?</Text> : null}
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}

@@ -4,10 +4,16 @@ import { CravingGrid } from '@/features/homepage/components/CravingGrid';
 import { Colors, Spacing } from '@/utils/constants';
 import type { CuratedListDetail } from '@/types/fixtures';
 
-export function DiscoverBarContent({ items }: { items: CuratedListDetail[] }) {
+export function DiscoverBarContent({
+  items,
+  showTitle = true,
+}: {
+  items: CuratedListDetail[];
+  showTitle?: boolean;
+}) {
   return (
     <View style={styles.wrap}>
-      <CravingGrid items={items} />
+      <CravingGrid items={items} showTitle={showTitle} />
     </View>
   );
 }
