@@ -5,6 +5,10 @@ Focus areas: UI fidelity, motion/interaction polish, and correct fixture-to-sect
 
 **Demo video:** https://drive.google.com/file/d/1j_yp4euw-LuVVlNhuW6flipYMCYo5i8O/view?usp=sharing
 
+Please try the app on **both iOS and Android** — several details (safe-area / notch handling,
+status-bar colour transitions, overscroll behaviour, shadows) are tuned per platform, so each
+gets its own polish rather than a shared lowest common denominator.
+
 ## Run instructions
 
 Requirements: Node 20+, plus one way to view the app:
