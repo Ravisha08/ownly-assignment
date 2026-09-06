@@ -9,9 +9,10 @@ Focus areas: UI fidelity, motion/interaction polish, and correct fixture-to-sect
 
 Requirements: Node 20+, plus one way to view the app:
 
-- **Physical device (easiest):** install the **Expo Go** app from the App Store / Play Store, then
-  after running `npx expo start` (below) scan the QR code shown in the terminal — with the Camera app
-  on iOS, or from inside the Expo Go app on Android. Phone and computer must be on the same Wi-Fi.
+- **Physical device:** install the **Expo Go** app, then after running `npx expo start` (below) scan
+  the QR code — Camera app on iOS, in-app scanner on Android. Phone and computer on the same Wi-Fi.
+  Note: on a physical **iPhone**, Expo Go SDK 57 requires an Expo account login (see Troubleshooting).
+  Android needs no login.
 - **iOS Simulator (macOS only):** install **Xcode** from the Mac App Store, open it once to finish
   setup, then install the command line tools with `xcode-select --install`. Open the simulator via
   Xcode → Open Developer Tool → Simulator (or run `open -a Simulator`).
@@ -35,16 +36,18 @@ Built on **Expo SDK 57** (React Native 0.86, Reanimated 4).
 ### Troubleshooting
 
 **iOS Expo Go says "You need to be signed in to Expo Go and Expo CLI":**
-this happens when the dev server is reached over a tunnel instead of the local network.
-Fix it either way:
+As of Expo Go SDK 57, opening a project on a **physical iPhone** requires being logged in
+on both sides with the same Expo account (see
+https://expo.dev/changelog/expo-go-57-login). One-time setup:
 
-- **Preferred:** keep phone and computer on the **same Wi-Fi** and start with plain
-  `npx expo start` (LAN mode). No account needed. If it still uses a tunnel, press `s`
-  in the terminal to switch back to Expo Go / LAN, or run `npx expo start --lan`.
-- **If they must be on different networks:** run `npx expo login` on the computer (free
-  account), then sign into the **same account** inside the Expo Go app on the phone.
+1. Create a free account at https://expo.dev/signup
+2. On the computer: `npx expo login`
+3. In the Expo Go app: Home tab → avatar icon → log in with the same account
+4. Scan the QR again
 
-Android Expo Go does not have this restriction.
+This does **not** apply to the iOS Simulator, Android, or development builds — those open
+without logging in. So the quickest paths that need no account are the **iOS Simulator**
+or **Android** (emulator or Expo Go).
 
 ## Data flow
 
