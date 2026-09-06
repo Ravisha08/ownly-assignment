@@ -9,7 +9,9 @@ Focus areas: UI fidelity, motion/interaction polish, and correct fixture-to-sect
 
 Requirements: Node 20+, plus one way to view the app:
 
-- **Physical device (easiest):** install the **Expo Go** app from the App Store / Play Store.
+- **Physical device (easiest):** install the **Expo Go** app from the App Store / Play Store, then
+  after running `npx expo start` (below) scan the QR code shown in the terminal — with the Camera app
+  on iOS, or from inside the Expo Go app on Android. Phone and computer must be on the same Wi-Fi.
 - **iOS Simulator (macOS only):** install **Xcode** from the Mac App Store, open it once to finish
   setup, then install the command line tools with `xcode-select --install`. Open the simulator via
   Xcode → Open Developer Tool → Simulator (or run `open -a Simulator`).
