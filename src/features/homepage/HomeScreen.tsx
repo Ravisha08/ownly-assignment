@@ -191,7 +191,7 @@ export function HomeScreen() {
       <Animated.View
         style={[styles.stickyFilterBar, { top: insets.top + stickyCravingHeight }, filterStickyStyle]}
       >
-        <AllRestaurantsFilterBar showHeading={false} />
+        <AllRestaurantsFilterBar showHeading={false} sticky />
       </Animated.View>
 
       <BackToTopButton visible={showBackToTop} onPress={scrollToTop} />

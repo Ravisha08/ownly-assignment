@@ -19,7 +19,13 @@ function Chip({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function AllRestaurantsFilterBar({ showHeading = true }: { showHeading?: boolean }) {
+export function AllRestaurantsFilterBar({
+  showHeading = true,
+  sticky = false,
+}: {
+  showHeading?: boolean;
+  sticky?: boolean;
+}) {
   return (
     <View style={styles.wrap}>
       {showHeading ? <Text style={styles.heading}>All restaurants</Text> : null}
@@ -33,9 +39,18 @@ export function AllRestaurantsFilterBar({ showHeading = true }: { showHeading?: 
           <Image source={chevronDown} style={styles.chevron} resizeMode="contain" />
         </Chip>
         <Chip>
-          <Image source={googleIcon} style={styles.google} resizeMode="contain" />
-          <Image source={starIcon} style={styles.star} resizeMode="contain" />
-          <Text style={styles.rating}>4+</Text>
+          {sticky ? (
+            <>
+              <View style={styles.ratingDot} />
+              <Text style={styles.label}>Rating 4+</Text>
+            </>
+          ) : (
+            <>
+              <Image source={googleIcon} style={styles.google} resizeMode="contain" />
+              <Image source={starIcon} style={styles.star} resizeMode="contain" />
+              <Text style={styles.rating}>4+</Text>
+            </>
+          )}
         </Chip>
         <Chip>
           <Text style={styles.label}>Under 30 mins</Text>
@@ -97,5 +112,11 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.regular,
     fontSize: 12,
     color: RATING_COLOR,
+  },
+  ratingDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: RATING_COLOR,
   },
 });
