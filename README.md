@@ -7,7 +7,16 @@ Focus areas: UI fidelity, motion/interaction polish, and correct fixture-to-sect
 
 ## Run instructions
 
-Requirements: Node 20+, and the Expo Go app (or an iOS/Android simulator).
+Requirements: Node 20+, plus one way to view the app:
+
+- **Physical device (easiest):** install the **Expo Go** app from the App Store / Play Store.
+- **iOS Simulator (macOS only):** install **Xcode** from the Mac App Store, open it once to finish
+  setup, then install the command line tools with `xcode-select --install`. Open the simulator via
+  Xcode → Open Developer Tool → Simulator (or run `open -a Simulator`).
+- **Android Emulator:** install **Android Studio**, then create and start a virtual device from its
+  Device Manager.
+
+Start the project:
 
 ```bash
 npm install
@@ -15,7 +24,8 @@ npx expo start
 ```
 
 Then:
-- press `i` for the iOS simulator, `a` for Android, or scan the QR with Expo Go
+- press `i` to open the iOS Simulator, `a` for the Android Emulator, or scan the QR code with
+  Expo Go on your phone (phone and computer must be on the same network)
 - no backend / network needed — all data is read from `docs/homepage-assignment-candidate-fixtures.json`
 
 Built on **Expo SDK 57** (React Native 0.86, Reanimated 4).
