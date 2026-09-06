@@ -72,7 +72,7 @@ Everything homepage-related sits in `features/homepage/`. Shared code sits outsi
 Filtering is kept in one place (`useRestaurantFilters` and `vegFilter`) so the veg toggle,
 the rating chip and lowest-price mode all work off the same list.
 
-## What I focused on
+## Things I did to make a static screen feel alive
 
 The data is fixed, so most of the work went into making the screen feel like a real app:
 
