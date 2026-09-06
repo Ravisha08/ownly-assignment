@@ -1,56 +1,55 @@
-# Welcome to your Expo app 👋
+# Ownly — Homepage (React Native / Expo)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A production-like build of the Figma homepage, driven entirely by the local fixture pack.
+Focus areas: UI fidelity, motion/interaction polish, and correct fixture-to-section mapping.
 
-## Get started
+**Demo video:** https://drive.google.com/file/d/1j_yp4euw-LuVVlNhuW6flipYMCYo5i8O/view?usp=sharing
 
-1. Install dependencies
+## Run instructions
 
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+Requirements: Node 20+, and the Expo Go app (or an iOS/Android simulator).
 
 ```bash
-npm run reset-project
+npm install
+npx expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Then:
+- press `i` for the iOS simulator, `a` for Android, or scan the QR with Expo Go
+- no backend / network needed — all data is read from `docs/homepage-assignment-candidate-fixtures.json`
 
-### Other setup steps
+Built on **Expo SDK 57** (React Native 0.86, Reanimated 4).
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+## Data flow
 
-## Learn more
+`src/data/homepageRepository.ts` loads the fixture file and exposes each API key.
+`src/features/homepage/services/homepageMapper.ts` maps raw fixture shapes to view models.
+`src/features/homepage/hooks/useHomeFeed.ts` runs the homepage flow:
 
-To learn more about developing your project with Expo, look at the following resources:
+1. serviceability gate (`serviceability.data.isServiceable`)
+2. `feed_config` → top banner, reorder, meal-for-one, curated sections, "What are you craving today?"
+3. section data joined from `past_orders`, `curated_feed_Food_item`, `curated_feed_res_item`, `curated_list_details`, `paginated_restaurant_feed`
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Empty sections are hidden; loading shows skeletons; non-serviceable shows a dedicated view.
 
-## Join the community
+## Project structure
 
-Join our community of developers creating universal apps.
+```
+src/
+  app/                       expo-router entry
+  data/                      fixture repository (single data source)
+  theme/                     typography (Figtree, exact Figma scale)
+  utils/                     text helpers, constants
+  features/homepage/
+    HomeScreen.tsx           screen shell + scroll orchestration
+    hooks/                   useHomeFeed, useRestaurantFilters
+    services/                homepageMapper, vegFilter
+    components/              hero, rails, cards, sticky bars, states
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## What's included
+
+- Runnable Expo project
+- Mocked response data (`docs/homepage-assignment-candidate-fixtures.json`)
+- `HIGHLIGHTS_AND_ASSUMPTIONS.md` — what I built for polish, plus simplifications and scope notes
+- Screen recording — Drive link at the top of this README
